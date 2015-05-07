@@ -7,11 +7,19 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
+from .email_info import*
+# email info
+EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.conf.global_settings import MEDIA_URL, STATIC_ROOT, MEDIA_ROOT,\
-    STATICFILES_DIRS
+    STATICFILES_DIRS, EMAIL_USE_TLS, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_PORT,\
+    EMAIL_HOST_PASSWORD
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 

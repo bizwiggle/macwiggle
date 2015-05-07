@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{%block content%}
+
+	<div role="main" class="main">
+				<section class="page-top">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home" %}'>Home</a></li>
+                           <li class="active">Quote</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>Quote</h1>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <div class="container">
+
+               <h2>You need<strong> Money</strong></h2>
+
+               <div class="row">
+                  <div class="col-md-12">
+                     <p class="lead"> </p>
+                     
+                     
+                     
+Sell your Macbook for cash
+It takes just a few minutes to sell your Macbook.
+
+{% if all_Macs %}
+    <div class="col-sm-12">
+     <table>
+    <tr>
+    {% for mac in all_Macs %}
+   
+     <td>
+     <div class="yyyy", id="yy">
+     <a class="selectQuote" id="selectQuote" href="#" rel="{{ mac.id }}"
+      id="selectQuote" onclick="listMacs('/getlistMacs/','id_listmacs',this.rel);">
+       
+     <img class="img-responsive" src="/static/img/macs/{{mac.imgMac}}"/>
+     {{ mac.nameMac }} </a></div>
+     </td>
+
+    {% endfor %}
+    </tr>
+     </table>
+    </div>
+{% else %}
+
+<p>Nenhuma enquete está disponível.</p>
+
+{% endif %}
+
+
+                    
+                  </div>
+               </div>
+
+               <hr>
+
+ <div>
+ <table id="id_listmacs" class="id_listmacs" border="1">
+
+ </table>
+ 
+ </div>
+ 
+
+
+<script type="text/javascript">
+function listMacs(url,objHtmlReturn,id)
+{
+	   // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+	   dados = {'id':id};
+	   //alert(id);
+	   // É inserido um elemento option dentro do elemento select
+	      $("#"+objHtmlReturn).html('<tr><td value="0">Loading...</td></tr>');
+	      $.ajax({
+	         type: "GET",
+	         url: url,
+	         dataType: "json",
+	         data: dados,
+	         timeout: 7000,
+	        success: function(retorno){
+	            $("#"+objHtmlReturn).empty();
+	            $.each(retorno, function(i, item){
+	            $("#"+objHtmlReturn).append('<tr><td value="'+item.pk+'"><b>Model: </b>'+item.fields['model']+' <b>Processor: </b> '+item.fields['processor']+'</td></tr>');
+	            });
+	        },
+	            error: function(erro) {
+	               alert('Erro.');
+	             }
+	         });
+}
+
+function selectScreen(url,objHtmlReturn,id)
+{
+	   // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+	   dados = {'id':id};
+	   //alert(objHtmlReturn);
+	   // É inserido um elemento option dentro do elemento select
+	      $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
+	      $.ajax({
+	         type: "GET",
+	         url: url,
+	         dataType: "json",
+	         data: dados,
+	         timeout: 7000,
+	        success: function(retorno){
+	            $("#"+objHtmlReturn).empty();
+	            $.each(retorno, function(i, item){
+	            $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['size']+'</option>');
+	            });
+	        },
+	            error: function(erro) {
+	               alert('Erro.');
+	             }
+	         });
+}   
+       
+       
+function selectProcessor(url,objHtmlReturn,id)
+{
+   // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+   dadosPro = {'id':id};
+   // É inserido um elemento option dentro do elemento select
+      $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
+      $.ajax({
+         type: "GET",
+         url: url,
+         dataType: "json",
+         data: dadosPro,
+         timeout: 7000,
+        success: function(retorno){
+            $("#"+objHtmlReturn).empty();
+            $.each(retorno, function(i, item){
+            $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['processor']+'</option>');
+        	});
+        },
+            error: function(erro) {
+               alert('Error.');
+             }
+         });
+}       
+
+
+
+
+function selectHd(url,objHtmlReturn,id)
+{
+   // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+   dadosHd = {'id':id};
+   // É inserido um elemento option dentro do elemento select
+      $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
+      $.ajax({
+         type: "GET",
+         url: url,
+         dataType: "json",
+         data: dadosHd,
+         timeout: 7000,
+        success: function(retorno){
+            $("#"+objHtmlReturn).empty();
+            $.each(retorno, function(i, item){
+            $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['drive']+'</option>');
+        	});
+        },
+            error: function(erro) {
+               alert('Error.');
+             }
+         });
+}       
+</script>
+
+
+       
+     
+     
+
+            </div>
+                                                                      
+			</div>
+      <!-- END .main -->			
+{%endblock%}

@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
-
-		
-
-        {% block content %}
+{% block content %}
+       
+        			<div role="main" class="main">
+				<section class="page-top">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home"%}'>Home</a></li>
+                           <li class="active">Home</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>HOME
+                        </h1>
+                     </div>
+                  </div>
+               </div>
+            </section>
         
         	<div class="slider-container">
           <div class="slider" id="revolutionSlider" data-plugin-revolution-slider data-plugin-options='{"startheight": 500}'>
@@ -156,7 +173,7 @@
               </div>
               <div class="col-md-4">
                 <div class="get-started">
-                  <a href="#" class="btn btn-xlg btn-primary">Get Your Quote!</a>
+                  <a href='{% url "macs" %}' class="btn btn-xlg btn-primary">Get Your Quote!</a>
                   <!-- div class="learn-more">or <a href="index.html">learn more.</a></div -->
                 </div>
               </div>
@@ -301,36 +318,36 @@
                 </div>
                 <div class="col-md-6">
                   <h2><strong>What</strong> Client’s Say</h2>
-                  <div class="row">
+                  
+                          
+                          
+                 {% if all_review %}
+                    <div class="row">
                     <div class="owl-carousel push-bottom" data-plugin-options='{"items": 1}'>
-                      <div>
-                        <div class="col-md-12">
-                          <blockquote class="testimonial">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.  Donec hendrerit vehicula est, in consequat.  Donec hendrerit vehicula est, in consequat.</p>
-                          </blockquote>
-                          <div class="testimonial-arrow-down"></div>
-                          <div class="testimonial-author">
-                            <p><strong>John Smith</strong><span>CEO & Founder - Okler</span></p>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="col-md-12">
-                          <blockquote class="testimonial">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </blockquote>
-                          <div class="testimonial-arrow-down"></div>
-                          <div class="testimonial-author">
-                            <p><strong>John Smith</strong><span>CEO & Founder - Okler</span></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+			     {% for enquete in all_review %}
+					    
+                   <div>
+                               <div class="col-md-12">
+					           <blockquote class="testimonial">
+					           <p>{{ enquete.review }}</p>
+					           <div class="testimonial-arrow-down"></div>
+                               <div class="testimonial-author">
+                               <p><strong>{{enquete.ReviewName}}</strong><span>{{enquete.ReviewProf}}</span></p>
+                               </div>
+                               </blockquote>
+                               </div>
                   </div>
+			     {% endfor %}
+					 </div>
+                     </div>
+   				  {% else %}
+				  <p>Doens'n have reviews.</p>
+				  {% endif %}
+                          
+   
                 </div>
               </div>
             </div>
           </section>
         </div>
-        
         {% endblock %}

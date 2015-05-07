@@ -10,9 +10,132 @@ img.center-pic {
 	margin: 0 auto;
 }
 
-.btn-xlg {
-	padding: 10px 30px;
-	line-height: 1.33;
-	border-radius: 6px;
-	font-size: 30px;
+
+.id_macs {
+	text-align: justify;
+	margin-top: 50px;
+	border-top: 3px solid gray;
+	
+}
+
+#macs {
+	font-size:14px;
+	height:200px;
+	cursor: pointer;
+	padding: 20px;
+    margin: 0px 0px;
+    border-width: 2px 2px 2px 5px;
+    border-style: solid;
+    border-color: #EEE;
+    border-bottom-color:#1B809E;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 3px;
+    text-align: left;
+	
+}
+
+#macs:HOVER {
+	
+	cursor: pointer;
+	padding: 20px;
+    margin: 0px 0px;
+    border-width: 1px 1px 1px 5px;
+    border-style: solid;
+    border-color:#1B809E;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 3px;
+    text-align: left;
+	
+}
+
+#selectQuote{
+	text-align: left;
+}
+#select{
+	width:100%;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	
+}
+
+#help{
+	
+	height: 300px;
+	overflow: scroll;
+	padding: 20px;
+    margin: 0px 0px;
+    border-width: 2px 2px 2px 5px;
+    border-style: solid;
+    border-color: #EEE;
+    border-left-color: #EEE;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 3px;
+	
+}
+
+#help_title{
+	text-align: center;
+	border-color: gray;
+	border-style: dotted;
+}
+
+textHelp{
+	text-align: left;
+	background-color:windowtext;
+	color: blue;
+}
+
+#infoMacModel{
+	text-align: left;
+	font-size:x-large;
+	margin-top: 30px;
+	
+}
+
+
+.bs-left {
+    padding: 20px;
+    margin: 20px 0px;
+    border-width: 2px 2px 2px 5px;
+    border-style: solid;
+    border-color: #EEE;
+    border-left-color: #1B809E;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.bs-top {
+    padding: 0px;
+    margin: 0px 0px;
+    border-width: 2px 2px 2px 5px;
+    border-style: solid;
+    border-color: #EEE;
+    border-top-color: #1B809E;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 3px;
+    text-align: justify;
+    font-size: 12px;
+    height: 140px;
 }

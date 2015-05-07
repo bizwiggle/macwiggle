@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+{%block content%}
+<style type="text/css">
+#productForm .form-control-feedback {
+    pointer-events: auto;
+}
+#productForm .form-control-feedback:hover {
+    cursor: pointer;
+}
+</style>
+<div role="main" class="main">
+	<section class="page-top">
+    <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home" %}'>Home</a></li>
+                           <li class="active">Quote</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>Quote</h1>
+                     </div>
+                  </div>
+     </div>
+     </section>
+     
+          {% if messages %}
+            <div class="containeriii">
+            
+ 
+               
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">           
+                 
+    <hr>
+    {% for message in messages %}
+    <p{% if message.tags == "error" %} class="alert alert-warning"{% endif %}>{{ message }}</p>
+    
+   
+    
+    {% endfor %}
+
+    
+   
+    
+    
+    </div>
+    </div>              
+     </h2>   
+
+                  
+{% endif %}
+               </div> 
+               
+               
+               
+               
+               
+ <div id="divshowModel"> 
+           {% if all_Paid %}
+           
+            <div class="container">
+
+               <h2>Step 3 of <strong>3</strong></h2>
+
+               <div class="row">
+                  <div class="col-md-12">
+                     <p class="lead"> </p>
+                     
+    
+     
+     
+     
+     
+       
+
+  
+<h4>Sell your Macbook for cash</h4>
+
+
+
+    <div class="col-sm-12">
+    
+     {% for pay in all_Paid %}
+   
+     
+     
+     
+  <div class="row">
+  <div class="col-xs-4 col-md-2">
+     <img class="img-responsive" src="/static/img/macs/macbook.jpg"/>
+  </div>
+  
+  <div id="infoMacModel" class="col-xs-8 col-md-10">
+<b>Model:</b>  {{ pay.idModelKey }}<br>
+ <b>Price:</b> $ {{ pay.price }}
+  </div>
+  <div class="col-xs-12 col-md-8"><h4>For selling fild out the form?</h4>
+  </div>
+</div> 
+     
+<form id="paidMac" name="paidMac" class="form-horizontal" action="/sellMac/" method="GET">
+   {% csrf_token %}
+     
+
+    <div class="form-group">
+                    <label class="col-lg-3 control-label">Full Name</label>
+                    <div class="col-lg-5">
+                       <input type="text" class="form-control" name="fullName" id="fullName">
+                    </div>
+                </div>
+    
+    <div class="form-group">
+                    <label class="col-lg-3 control-label">E-mail</label>
+                    <div class="col-lg-5">
+                       <input type="text" class="form-control" name="email" id="email">
+                    </div>
+                </div>
+    
+<div class="form-group">
+                    <label class="col-lg-3 control-label">Phone</label>
+                    <div class="col-lg-5">
+                       <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+                </div>    
+    
+  <div class="form-group">
+                                <label class="col-lg-3 control-label">US zip code</label>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" name="zipCode" />
+                                </div>
+                            </div>
+                               
+ <div class="form-group">
+                    <label class="col-lg-3 control-label">Address</label>
+                    <div class="col-lg-5">
+                       <input type="text" class="form-control" name="address" id="address">
+                    </div>
+                </div>   
+    
+ 
+ <div class="form-group">
+                    <label class="col-lg-3 control-label">City</label>
+                    <div class="col-lg-5">
+                       <input type="text" class="form-control" name="city" id="city">
+                    </div>
+                </div>  
+                
+                
+ <div class="form-group">
+                            <label class="col-lg-3 control-label">States</label>
+                            <div class="col-lg-4">
+                          <select class="form-control" name="state">
+               {% for state in STATES %}
+                  <option value={{ state.0 }}{% if state.0 == general_info.state %} selected{% endif %}>
+                     {{ state.1 }}
+                  </option>
+               {% endfor %}
+               </select>
+                            </div>
+                        </div>
+
+   
+
+  
+ 
+    <input type="hidden" name="macModel" id="macModel" value="{{ pay.idModelKey }}">
+    <input type="hidden" name="macPrice" id="macPrice" value="{{ pay.price }}">
+    <input type="hidden" name="macState" id="macState" value="{{pay.status}}">
+ <div class="form-group">
+                                <div class="col-lg-5 col-lg-offset-3">
+                                    <div class="checkbox">
+                                        <input type="checkbox" name="acceptTerms" /> Accept the terms and policies
+                                    </div>
+                                </div>
+                            </div>
+ <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+    <button id="io" type="submit" class="btn btn-warning">Next</button> 
+                    </div>
+                </div>
+
+    
+    
+    
+ </form>   
+
+ {% endfor %}
+    
+    
+      </div>
+{% else %}
+
+<!-- <p>Nenhuma enquete está disponível.</p> -->
+
+{% endif %}
+    
+     
+
+
+                    
+                  </div>
+               </div>
+
+               <hr>
+
+
+	
+
+
+
+
+ 
+ 
+ </div>
+
+
+
+
+
+
+<div id="showQ">
+
+<table id="showModel" name="idModel">
+
+</table>
+
+
+</div>
+
+ 
+
+
+
+
+       
+     
+     
+
+            </div>
+                                                                      
+			</div>
+      <!-- END .main -->
+      
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#paidMac')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                fullName: {
+                    message: 'The username is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The fullname is required and can\'t be empty'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The fullname must be more than 6 and less than 30 characters long'
+                        },
+                        /*remote: {
+                            url: 'remote.php',
+                            message: 'The username is not available'
+                        },*/
+                        regexp: {
+                            regexp: /^[a-zA-Z_\. ]+$/,
+                            message: 'The username can only consist of alphabetical, number, dot and underscore'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The email address is required and can\'t be empty'
+                        },
+                        emailAddress: {
+                            message: 'The input is not a valid email address'
+                        }
+                    }
+                },
+                
+                phone: {
+                    validators: {
+                    	notEmpty: {
+                            message: 'The phone is required and can\'t be empty'
+                        },
+                        phone: {
+                            country: 'us',
+                            message: 'The value is not valid %s phone number'
+                        }
+                    }
+                },
+                
+                zipCode: {
+                    validators: {
+                    	notEmpty: {
+                            message: 'The zipCode is required and can\'t be empty'
+                        },
+                        zipCode: {
+                            country: 'US',
+                            message: 'The input is not a valid US zip code'
+                        }
+                    }
+                },
+                
+                address: {
+                    message: 'The address is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The address is required and can\'t be empty'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 50,
+                            message: 'The address must be more than 6 and less than 30 characters long'
+                        },
+                        /*remote: {
+                            url: 'remote.php',
+                            message: 'The username is not available'
+                        },*/
+                    }
+                },
+                
+                city: {
+                    validators: {
+                    	notEmpty: {
+                            message: 'The city is required and can\'t be empty'
+                        },
+                        stringLength: {
+                            min: 4,
+                            max: 50,
+                            message: 'The city must be more than 4 and less than 30 characters long'
+                        },
+                    	city: {
+                            country: 'US',
+                            message: 'The input is not a valid US zip code'
+                        }
+                    }
+                },
+                
+                state: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The state is required and can\'t be empty'
+                        }
+                    }
+                },
+                
+                acceptTerms: {
+                    validators: {
+                        notEmpty: {
+                            message: 'You have to accept the terms and policies'
+                        }
+                    }
+                },
+                
+               
+            }
+        })
+        
+});
+</script>			
+{%endblock%}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{%block content%}
+			<div role="main" class="main">
+				<section class="page-top">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home" %}'>Home</a></li>
+                           <li class="active">FAQs</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>FAQ</h1>
+                     </div>
+                  </div>
+               </div>
+            </section>
+{% if messages %}
+            <div class="container">
+            
+ 
+               
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">           
+                 
+    <hr>
+    {% for message in messages %}
+    <p{% if message.tags == "success" %} 
+    class="alert alert-success"{% endif %}>{{ message }}</p>
+    
+   
+    
+    {% endfor %}
+
+    
+   
+    
+    
+    </div>
+    </div>              
+     </h2>   
+
+                  
+{% endif %}
+               </div>
+
+            </div>
+                                                                      
+			</div>
+      <!-- END .main -->			
+{%endblock%}

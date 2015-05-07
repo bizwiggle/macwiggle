@@ -1,7 +1,57 @@
 {% extends 'base.html' %}
-
 {%block content%}
-<div class="col-sm-12" style="text-align: center;">
-<h1>This page is FAQs</h1>
-</div>
+			<div role="main" class="main">
+				<section class="page-top">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home" %}'>Home</a></li>
+                           <li class="active">FAQs</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>FAQ</h1>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <div class="container">
+
+               <h2>Frequently Asked <strong>Questions</strong></h2>
+               <div class="row">
+                  <div class="col-md-12">
+                     <p class="lead">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla non pulvinar. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eu risus enim, ut pulvinar lectus. Sed hendrerit nibh metus.
+                     </p>
+                  </div>
+               </div>
+
+               <hr>
+{% if all_faqs %}
+
+               <div class="row">
+                  <div class="col-md-12">
+{% for faqs in all_faqs %}
+                     <div class="toogle" data-plugin-toggle>
+                        <section class="toggle active">
+                           <label>{{faqs.question}}</label>
+                           <p>{{faqs.answer}}</p>
+                        </section>
+                     </div>
+{% endfor %}
+                  </div>
+
+               </div>
+               
+               {% else %}
+			<p>Doens'n have Faqs.</p>
+			   {% endif %}
+            </div>
+                                                                      
+			</div>
+      <!-- END .main -->			
 {%endblock%}

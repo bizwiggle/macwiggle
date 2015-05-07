@@ -1,0 +1,507 @@
+{% extends 'base.html' %}
+{%block content%}
+
+<div role="main" class="main">
+	<section class="page-top">
+    <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home" %}'>Home</a></li>
+                           <li class="active">Quote</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>Quote</h1>
+                     </div>
+                  </div>
+     </div>
+     </section>
+ <div id="divshowModel"> 
+           
+           
+            <div class="container">
+
+ <h2>Step 1 of <strong>3</strong></h2>
+               <div class="row">
+                  <div class="col-md-12">
+                     <p class="lead"> </p>
+                     
+    
+     
+     
+     
+     
+       
+                   
+  <form id="ssearchModel" name="frm" class="ssearchModel" method="GET" action="/searchModel/">
+                    
+<h1>Sell your Macbook for cash<br></h1>
+<h3>It takes just a few minutes to sell your Macbook.</h3>
+
+{% if all_Macs %}
+    <div class="">
+     
+    {% for mac in all_Macs %}
+   
+    
+ 
+     
+     <div id="macs" class="col-xs-4 col-sm-4 col-md-4">
+     <div id="selectQuote" onclick="selectScreen('/getScreen/','id_screen',{{ mac.id }});">
+     <img title="{{ mac.nameMac }}" class="img-responsive"src="/static/img/macs/{{mac.imgMac}}"/><br>
+    {{ mac.nameMac }}</div></div>
+     
+
+    {% endfor %}
+   
+    </div>
+{% else %}
+
+<p>Nenhuma enquete está disponível.</p>
+
+{% endif %}
+
+
+                    
+                  </div>
+               </div>
+
+               <hr>
+
+<div class="row">
+
+  <div class="col-xs-12 col-md-8">
+  </div>
+  
+
+   
+  <div class="col-xs-12 col-sm-6 col-md-6 bs-left">
+  
+  <div class="form-group" id="select" align="left">
+   <div>
+<select name="screen" style="display:none" class="form-control input-lg" id="id_screen" onchange="selectProcessor('/getProcessor/','id_processor',$('#id_screen').val());">
+	   </select>
+   </div>
+        
+</div>
+
+	
+	
+<div class="form-group" id="select" align="left">
+   <div >     
+<select name="processor" style="display:none" class="form-control input-lg" id="id_processor" onchange="selectHd('/getHd/','id_hd',$('#id_processor').val());">
+</select>
+   </div>
+        
+</div>
+
+
+	
+<div class="form-group" id="select" align="left">
+   <div>     
+<select name="hd" style="display:none" class="form-control input-lg" id="id_hd" onchange="showBtn('id_button_next');"></select>
+
+   </div>
+        
+</div>
+<br>
+
+
+
+ <button id="id_button_next" style="display:none" type="submit" class="btn btn-primary btn-lg btn-block"> Next </button> 
+        
+      
+  
+  </div>
+  </form> 
+  
+  <br>
+  <div class="clearfix visible-xs-block"></div>
+  
+    <div id="help" class="col-xs-12 col-sm-6 col-md-6">
+    
+    <div id="help_title">How to find your system specifications</div><br>
+    <h5><b>Step 1</b></h5>
+<div class="row">
+
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="textHelp">Click the Apple button in the upper left corner and choose "About this Mac" 
+  </div>
+  </div>
+  
+  <div class="col-xs-12 col-sm-12">
+  <img src="/static/img/laptop_help.png"/>
+  </div>
+  </div><br><br>
+  
+   <h5><b>Step 2</b></h5>
+   <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="textHelp">
+ Click on "More Info"
+  </div>
+  </div>
+  
+  <div class="col-xs-12 col-md-12">
+  <img src="/static/img/laptop_help_step2.png"/>
+  </div>
+
+</div><br><br>
+
+
+<h5><b>Step 3</b></h5>
+   <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="textHelp">
+Here you will find details about your Macbook, including the screen size, processor type, and model year.   </div>
+  </div>
+  
+  <div class="col-xs-12 col-md-12">
+  <img src="/static/img/laptop_help_step3.png"/>
+  </div>
+
+</div><br><br>
+
+
+
+<h5><b>Step 4</b></h5>
+   <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="textHelp">
+Click 'Storage' to find hard drive capacity (round up to the closest option.) Click 'System Report' for additional specifications such as model identifier.  </div>
+  </div>
+  
+  <div class="col-xs-12 col-md-12">
+  <img src="/static/img/laptop_help_step4.png"/>
+  </div>
+
+</div>
+    
+    
+    
+    </div>
+
+</div><!--  div row --><br><br>
+
+
+
+
+
+
+  
+ <div id="id_macs" class="id_macs" >
+ 
+<div class="col-sm-4 col-lg-4">
+ <h3>Breaking News</h3>
+ <p>Forbes, The Wall Street Journal and CNET have all written about Gazelle.</p>
+ <p><a href="/press-coverage" class="block">See what the press thinks</a></p>
+ <a href="/press-coverage"><img src="https://cdn.gazelle.com/cms-assets/assets/300/logo_trans-1_original.gif"></a>
+</div>
+
+  <div class="col-sm-4 col-lg-4">
+  <h3>We Buy Broken iPhones</h3>
+ <p>Whether it's smashed, soaked or just plain dead, we'll pay cash for many broken iPhone models.</p>
+ <p><a href="/iphone">Sell your broken iPhone</a></p>
+ <a href="/iphone"><img src="https://cdn.gazelle.com/cms-assets/assets/195/broken_iphone_original.jpg"></a>
+  </div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  
+  
+  <div class="col-sm-4 col-lg-4">
+   <h3>Upgrading to a new MacBook?</h3>
+ <p>We'll buy your current MacBook and even take care of packing and shipping.</p>
+ <p><a href="/sell/macbook">What's your MacBook worth?</a></p>
+ <a href="/sell/macbook"><img src="https://cdn.gazelle.com/cms-assets/assets/197/macbook_original.jpg"></a>
+  </div> 
+ 
+ 
+ 
+ </div><!-- end div cointaner -->
+ </div>
+</div>
+</div><!-- end div id_macs -->
+
+
+
+
+ 
+
+<script type="text/javascript">
+//$('#macState').submit(function(){
+//	var params = $('#macState').serialize();
+
+//alert(params)
+//	if (params == "") {
+//		alert(params)
+//		} else {
+//		alert(params)
+//		return false
+//		}//fim do else
+//		return false			
+//	})
+
+
+//$('#searchModel').submit(function(){
+//var params = $('#searchModel').serialize();
+
+//if (params == "") {
+//	alert('sem model')
+//	} else {
+//	$.ajax({
+//	type:"GET",
+//	url:"/searchModel/",
+//	dataType: "json",
+//	data:params,
+//	success: function(retorno){
+//     $("#showModel").empty();
+//     $.each(retorno, function(i, item){
+//     $('#divshowModel').slideDown(retorno)
+//     $('#divshowModel').slideUp(retorno)
+//     $("#showQ").append('<h1>1. What shape is it in? </h1><form id="macState"><button type="submit" class="btn btn-warning">Next</button><tr><td value="'+item.pk+'"><b>Model: </b>'+item.fields['model']+'</td></tr></form>');
+    
+//     });
+// },
+//	})	
+//	return false
+//	}//fim do else
+//	return false			
+//})
+	
+	
+	
+
+
+
+
+function selectScreen(url,objHtmlReturn,id)
+{
+screenShow=$("#"+objHtmlReturn);
+
+if($(screenShow)==0) {
+ $(screenShow).removeClass('visible');
+ $(screenShow).addClass('invisible');
+ $(screenShow).slideUp('fast');
+} else {
+ $(screenShow).removeClass('invisible');
+ $(screenShow).addClass('visible');
+ $(screenShow).slideDown('fast');
+}
+
+hdShow=$("#id_hd");    
+proShow=$("#id_processor");
+
+if($(id)==0) {
+    
+	$(proShow).removeClass('visible');
+    $(proShow).addClass('invisible');
+    $(proShow).slideUp('fast');
+} else {  
+    $(proShow).removeClass('visible');
+    $(proShow).addClass('invisible');
+    $(proShow).slideUp('fast');
+
+    //alert('fffff');
+} 
+
+if($(id)==0) {
+    
+	$(hdShow).removeClass('visible');
+    $(hdShow).addClass('invisible');
+    $(hdShow).slideUp('fast');
+} else {  
+    $(hdShow).removeClass('visible');
+    $(hdShow).addClass('invisible');
+    $(hdShow).slideUp('fast');
+
+    //alert('fffff');
+} 
+
+if($(id)==0) {
+    
+	$(id_button_next).removeClass('visible');
+    $(id_button_next).addClass('invisible');
+    $(id_button_next).slideUp('fast');
+} else {  
+    $(id_button_next).removeClass('visible');
+    $(id_button_next).addClass('invisible');
+    $(id_button_next).slideUp('fast');
+
+} 
+   // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+   dados = {'id':id};
+   if (dados == "") {
+	 	alert('sem model')
+   } else {
+   // É inserido um elemento option dentro do elemento select
+      $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
+      $.ajax({
+         type: "GET",
+         url: url,
+         dataType: "json",
+         data: dados,
+         timeout: 7000,
+        success: function(retorno){
+            $("#"+objHtmlReturn).empty();
+            $('#id_macs').slideDown(retorno)
+            $('#id_macs').slideUp(retorno)
+            $('html, body').animate({scrollTop:360}, 'slow');
+            $("#"+objHtmlReturn).html('<option value="0">Select Screen</option>');
+            $.each(retorno, function(i, item){
+            $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['size']+'</option>');
+            });
+        },
+            error: function(erro) {
+               alert('Erro.');
+             }
+         });
+   	return false
+   	}//fim do else
+   	return false
+}   
+   
+   
+function selectProcessor(url,objHtmlReturn,id)
+{
+ proShow=$("#"+objHtmlReturn);
+    
+ if ($(id)==0) {
+     $(proShow).removeClass('visible');
+     $(proShow).addClass('invisible');
+     $(proShow).slideUp('fast');
+ } else {
+     $(proShow).removeClass('invisible');
+     $(proShow).addClass('visible');
+     $(proShow).slideDown('fast');
+ }
+ 
+ hdShow=$("#id_hd");    
+ proShow=$("#id_processor");
+ 
+ if($(id)==0) {
+     
+	 $(hdShow).removeClass('visible');
+     $(hdShow).addClass('invisible');
+     $(hdShow).slideUp('fast');
+ } else {  
+     $(hdShow).removeClass('visible');
+     $(hdShow).addClass('invisible');
+     $(hdShow).slideUp('fast');
+  } 
+ if($(id)==0) {
+	    
+		$(id_button_next).removeClass('visible');
+	    $(id_button_next).addClass('invisible');
+	    $(id_button_next).slideUp('fast');
+	} else {  
+	    $(id_button_next).removeClass('visible');
+	    $(id_button_next).addClass('invisible');
+	    $(id_button_next).slideUp('fast');
+
+	} 
+// Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+dadosPro = {'id':id};
+// É inserido um elemento option dentro do elemento select
+  $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
+  $.ajax({
+     type: "GET",
+     url: url,
+     dataType: "json",
+     data: dadosPro,
+     timeout: 7000,
+    success: function(retorno){
+        $("#"+objHtmlReturn).empty();
+        $('html, body').animate({scrollTop:400}, 'slow');
+        $("#"+objHtmlReturn).html('<option value="0">Select Processor</option>');
+        $.each(retorno, function(i, item){
+        $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['processor']+'</option>');
+    	});
+    },
+        error: function(erro) {
+           alert('Error.');
+         }
+     });
+}       
+
+
+
+
+function selectHd(url,objHtmlReturn,id)
+{
+hdShow=$("#"+objHtmlReturn);
+
+ if($(id)==0) {
+     $(hdShow).removeClass('visible');
+     $(hdShow).addClass('invisible');
+     $(hdShow).slideUp('fast');
+ } else {
+     $(hdShow).removeClass('invisible');
+     $(hdShow).addClass('visible');
+     $(hdShow).slideDown('fast');
+ }
+ 
+ if($(id)==0) {
+	    
+		$(id_button_next).removeClass('visible');
+	    $(id_button_next).addClass('invisible');
+	    $(id_button_next).slideUp('fast');
+	} else {  
+	    $(id_button_next).removeClass('visible');
+	    $(id_button_next).addClass('invisible');
+	    $(id_button_next).slideUp('fast');
+
+	} 
+// Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+dadosHd = {'id':id};
+// É inserido um elemento option dentro do elemento select
+  $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
+  $.ajax({
+     type: "GET",
+     url: url,
+     dataType: "json",
+     data: dadosHd,
+     timeout: 7000,
+    success: function(retorno){
+        $("#"+objHtmlReturn).empty();
+        $('html, body').animate({scrollTop:450}, 'slow');
+        $("#"+objHtmlReturn).html('<option value="0">Select Hard Drive</option>');
+        $.each(retorno, function(i, item){
+        $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['drive']+'</option>');
+    	});
+    },
+        error: function(erro) {
+           alert('Error.');
+         }
+     });
+}   
+
+
+
+function showBtn(objHtmlReturn)
+{
+hdShow=$("#"+objHtmlReturn);
+
+ if($(hdShow).hasClass('visible')) {
+     $(hdShow).removeClass('visible');
+     $(hdShow).addClass('invisible');
+     $(hdShow).slideUp('fast');
+ } else {
+     $(hdShow).removeClass('invisible');
+     $(hdShow).addClass('visible');
+     $(hdShow).slideDown('fast');
+     $('html, body').animate({scrollTop:500}, 'slow');
+
+ }
+}
+</script>
+
+
+       
+     
+     
+      		
+{%endblock%}

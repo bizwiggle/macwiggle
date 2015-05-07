@@ -1,7 +1,17 @@
 from django import forms
-from .models import SignUp
+from .models import macsBuy, Contact, Newsletter
 
-class SignUpForm(forms.ModelForm):
+
+class macsBuyForm(forms.ModelForm):
     class Meta:
-        model = SignUp
-    
+        model = macsBuy
+        
+
+class contactForms(forms.ModelForm):
+    class Meta:
+        model = Contact
+ 
+
+class newslatterForm(forms.ModelForm):
+    class Meta:
+        model = Newsletter   

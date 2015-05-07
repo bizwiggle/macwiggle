@@ -1,0 +1,328 @@
+{% extends 'base.html' %}
+{%block content%}
+<style type="text/css">
+label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 13px;
+}
+
+label:before {
+    content: "";
+    display: inline-block;
+ 
+    width: 16px;
+    height: 16px;
+ 
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #aaa;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+
+input[type=radio] {
+    display: none;
+}
+
+.radio label:before {
+    border-radius: 8px;
+}
+
+input[type=radio]:checked + label:before {
+    content: "\2022";
+    color: #f3f3f3;
+    font-size: 30px;
+    text-align: center;
+    line-height: 18px;
+}
+</style>
+<div role="main" class="main">
+	<section class="page-top">
+    <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <ul class="breadcrumb">
+                           <li><a href='{% url "home" %}'>Home</a></li>
+                           <li class="active">Quote</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1>Quote</h1>
+                     </div>
+                  </div>
+     </div>
+     </section>
+     {% if messages %}
+            <div class="container">
+            
+ 
+               
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">           
+                 
+    <hr>
+    {% for message in messages %}
+    <div{% if message.tags == "error" %} class="alert alert-success"{% endif %}>{{ message }}</div>
+    
+   
+    
+    {% endfor %}
+
+    
+   
+    
+    
+    </div>
+    </div>              
+     </h2>   
+
+                  
+{% endif %}
+               </div>      
+<div class="container">
+{% if all_Model %}
+
+
+  <h2>Step 2 of <strong>3</strong></h2>
+
+ <div class="row">
+
+
+     
+    
+    {% for mac in all_Model %}
+<div class="row bs-left" id="">
+  <div class="col-xs-11 col-sm-4">
+     <img class="img-responsive" src="/static/img/macs/macbook.jpg"/>
+  </div>
+  
+  <div id="infoMacModel" class="col-xs-11 col-sm-8">
+<b>{{ mac.idMacKey }} {{ mac.model }}</b> {{ mac.idProcessorKey }}
+{{ mac.idScreenKey }} {{ mac.idHdKey }}
+  </div>
+</div>    
+    
+  <div style="margin:10px; class="col-xs-12 col-sm-12"><h4>1. What shape is it in?</h4>
+  </div>
+  
+<div class="row visible-on">
+
+ 
+
+<div class="hidden-xs bs-top">
+<form method="GET" id="formMacPrice">
+<input name="modelMac" type="hidden" value="{{ mac.id }}">
+  
+  
+  <div class="col-sm-3" id="">
+    <div id='poor' class="radio">
+    <label>Broken
+  <input id="" type="radio" value="1" name="getState">
+   </label>
+    	
+    	<p>Does not power on, has multiple functional defects, or has severe <span>physical damage</span></p>
+    </div>
+  </div>
+  
+  <div class="col-sm-3" id="">
+  <div id='fair' class="radio">
+    <label>Fair 
+<input id="Fair" type="radio" value="2" name="getState"></label> 
+    	<p>Has moderate to heavy <span>physical defects</span>, or minor <span>functional defects</span></p>
+    </div>
+  </div>
+
+  <!-- Add the extra clearfix for only the required viewport -->
+  <div class="clearfix visible-xs-block"></div>
+
+  <div class="col-sm-3" id="">
+    <div id='good' data-option='631' class="radio">
+  <label>Good<input id="" type="radio" value="3" name="getState"></label>
+    	
+    	<p><span>Normal signs</span> of everyday use</p>
+    </div>
+  </div>
+  
+  <div class="col-sm-3" id="">
+  <div id='perfect' data-option='632' class="radio">
+    	<label>Flawless
+  <input id="Flawless" type="radio" value="4" name="getState"></label>
+    	
+    	<p>Looks like it's <span>never been used</span></p>
+    </div>
+  </div>
+  
+  </form>
+  </div>
+  
+  
+ <div class="visible-xs">
+ <form method="GET" id="formMacPriceMob">
+
+ <div align="left" id="select" class="row col-xs-10">
+ <div id="select" class="row col-xs-10">
+  <select name="getState" class="form-control input-lg">
+  <option value="0">Select</option>
+  <option value="1">Broken</option>
+  <option value="2">Fair</option>
+  <option value="3">Good</option>
+  <option value="4">Flawless</option>
+  </select>
+  </div></div>
+  
+  <input name="modelMac" type="hidden" value="{{ mac.id }}">
+  </form>
+</div><!--visible-xs -->
+
+  </div>
+</div>
+   
+    
+    
+ 
+     
+
+<form method="GET" action="/getPaid/">
+
+
+<div id="id_price" border="1">
+    
+	
+</div>
+<input name="modelMac" type="hidden" value="{{ mac.id }}">	
+
+
+</form>
+
+
+{% endfor %}
+
+{% else %}
+
+<!-- <p>Nenhuma enquete está disponível.</p> -->
+
+{% endif %}
+<div id="id_price1">
+<div id="id_macs" class="id_macs col-sm-12 col-xm-12" >
+ 
+<div class="col-sm-4 col-xm-12">
+ <h3>Breaking News</h3>
+ <p>Forbes, The Wall Street Journal and CNET have all written about Gazelle.</p>
+ <p><a href="/press-coverage" class="block">See what the press thinks</a></p>
+ <a href="/press-coverage"><img src="https://cdn.gazelle.com/cms-assets/assets/300/logo_trans-1_original.gif"></a>
+</div>
+
+  <div class="col-sm-4 col-xm-12">
+  <h3>We Buy Broken iPhones</h3>
+ <p>Whether it's smashed, soaked or just plain dead, we'll pay cash for many broken iPhone models.</p>
+ <p><a href="/iphone">Sell your broken iPhone</a></p>
+ <a href="/iphone"><img src="https://cdn.gazelle.com/cms-assets/assets/195/broken_iphone_original.jpg"></a>
+  </div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  
+  
+  <div class="col-sm-4 col-xm-12">
+   <h3>Upgrading to a new MacBook?</h3>
+ <p>We'll buy your current MacBook and even take care of packing and shipping.</p>
+ <p><a href="/sell/macbook">What's your MacBook worth?</a></p>
+ <a href="/sell/macbook"><img src="https://cdn.gazelle.com/cms-assets/assets/197/macbook_original.jpg"></a>
+  </div> 
+ 
+ 
+ 
+ </div><!-- end div cointaner -->
+</div>
+
+
+</div>
+</div>
+
+
+ 
+
+<script type="text/javascript">
+
+
+$("#formMacPrice").change(function(){
+	
+	var params = $("#formMacPrice").serialize();
+	if (params == "") {
+		alert('sem model')
+		} else {
+		$.ajax({
+		type:"GET",
+		url:"/getPriceMac/",
+		dataType: "json",
+		data:params,
+		success: function(retorno){
+			
+	        $("#id_price").empty();
+	        $.each(retorno, function(i, item){
+	        $('#id_price1').slideDown(retorno)
+	        $('#id_price1').slideUp(retorno)
+	        $('html, body').animate({scrollTop:520}, 'slow');
+
+	        if (item.pk == 0){
+		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>MacWiggle doens`t buy this  product.<br></div>');
+	        } else {
+	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div class="bs-left" style="color: black; text-align: justify;" value="'+item.pk+'">'+item.fields['msg']+'</div><div style="background-color: white; text-align: center; border: 1px solid blue; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
+	        }
+	        });
+	    },
+		})	
+		return false
+		}//fim do else
+		return false			
+	})
+	
+	
+	
+$("#formMacPriceMob").change(function(){
+	
+	var params = $("#formMacPriceMob").serialize();
+	if (params == "") {
+		alert('sem model')
+		} else {
+		$.ajax({
+		type:"GET",
+		url:"/getPriceMac/",
+		dataType: "json",
+		data:params,
+		success: function(retorno){
+			
+	        $("#id_price").empty();
+	        $.each(retorno, function(i, item){
+	        $('#id_price1').slideDown(retorno)
+	        $('#id_price1').slideUp(retorno)
+	        $('html, body').animate({scrollTop:600}, 'slow');
+
+	        if (item.pk == 0){
+		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>MacWiggle doens`t buy this  product.<br></div>');
+	        } else {
+	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div class="bs-left" style="color: black; text-align: justify;" value="'+item.pk+'">'+item.fields['msg']+'<br></div><div style="background-color: white; text-align: center; border: 1px solid black; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
+	        }
+	        });
+	    },
+		})	
+		return false
+		}//fim do else
+		return false			
+	})
+</script>
+
+
+       
+     
+     
+
+            </div>                                                           
+      <!-- END .main -->			
+{%endblock%}
