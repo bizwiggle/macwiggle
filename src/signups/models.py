@@ -129,3 +129,5 @@ class Newsletter (models.Model):
     
     def __unicode__(self):
         return u'{0}'.format(self.email) 
+    
+    

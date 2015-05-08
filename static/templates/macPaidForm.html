@@ -155,7 +155,7 @@
                             <div class="col-lg-4">
                           <select class="form-control" name="state">
                {% for state in STATES %}
-                  <option value={{ state.0 }}{% if state.0 == general_info.state %} selected{% endif %}>
+                  <option value={{ state.0 }}{% if state.0 == info.STATES %} selected{% endif %}>
                      {{ state.1 }}
                   </option>
                {% endfor %}

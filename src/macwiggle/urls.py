@@ -23,8 +23,6 @@ urlpatterns = patterns('',
      url(r'^getPriceMac/$', 'signups.views.getPriceMac', name='getPriceMac'),
      url(r'^searchModel/$', 'signups.views.searchModel', name='searchModel'),
 
-     #url(r'^getlistMacs/$', 'signups.views.getlistMacs', name='getlistMacs'),
-     url(r'^macss/$', 'signups.views.macss', name='macss'),
      url(r'^getScreen/$', 'signups.views.getScreen', name='getScreen'),
      url(r'^getProcessor/$', 'signups.views.getProcessor', name='getProcessor'),
      url(r'^getHd/$', 'signups.views.getHd', name='getHd'),

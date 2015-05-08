@@ -118,11 +118,11 @@
 							<div class="contact-details">
 								<h4>Contact Us</h4>
 								<ul class="contact">
-									<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, United States</p></li>
-									<li><p><i class="fa fa-phone"></i> <strong>Phone: </strong>
+									<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong>{{ STREET_ADDRESS }}</p></li>
+									<li><p><i class="fa fa-phone"></i> <strong>Phone: </strong>{{ PHONE }}
 									
 									</p></li>
-									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">mail@example.com</a></p></li>
+									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:{{ EMAIL }}">{{ EMAIL }}</a></p></li>
 								</ul>
 							</div>
 						</div>
@@ -130,9 +130,17 @@
 							<h4>Follow Us</h4>
 							<div class="social-icons">
 								<ul class="social-icons">
-									<li class="facebook"><a href="http://www.facebook.com/" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
-									<li class="twitter"><a href="http://www.twitter.com/" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
-									<li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" data-placement="bottom" data-tooltip title="Linkedin">Linkedin</a></li>
+									{% if FACEBOOK %}
+									<li class="facebook"><a href="{{ FACEBOOK }}" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
+									{% endif%}
+									
+									{% if TWITTER %}
+									<li class="twitter"><a href="{{ TWITTER }}" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
+									{% endif %}
+									
+									{% if LINKEDIN %}
+									<li class="linkedin"><a href="{{ LINKEDIN }}" target="_blank" data-placement="bottom" data-tooltip title="Linkedin">Linkedin</a></li>
+									{% endif %}
 								</ul>
 							</div>
 						</div>
@@ -143,7 +151,7 @@
 						<div class="row">
 							<div class="col-md-1">
 								<a href="index.html" class="logo">
-									<img alt="Macwiggle Logo" class="img-responsive" src="/static/img/logo-footer.png">
+									<img alt="Macwiggle Logo" class="img-responsive" src="/static/img/logo.png">
 								</a>
 							</div>
 							<div class="col-md-7">
@@ -229,7 +237,7 @@
          // Map Markers
          var mapMarkers = [{
             address: "New York, NY 10017",
-            html: "<strong>New York Office</strong><br>New York, NY 10017",
+            html: "<strong>Austin Office</strong><br>1616 West 6th Street Unit 234",
             icon: {
                image: "img/pin.png",
                iconsize: [26, 46],
@@ -239,8 +247,8 @@
          }];
 
          // Map Initial Location
-         var initLatitude = 40.75198;
-         var initLongitude = -73.96978;
+         var initLatitude = 30.27641;
+         var initLongitude = -97.76309;
 
         // Map Extended Settings
          var mapSettings = {

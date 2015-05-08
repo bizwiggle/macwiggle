@@ -3,18 +3,14 @@ STREET_ADDRESS = "12443 Tech Ridge Blvd"
 CITY = "Austin"
 STATE = "Tx"
 EMAIL = "teste@teste.com"
-FACEBOOK = "facebook"
-TWITTER = "twitter"
-LINKEDIN = "linkdin"
-MONFRIOPEN = "9:00 am"
-MONFRICLOSE = "6:00 pm"
-SATOPEN = "9:00 am"
-SATCLOSE = "6:00 pm"
-SUNOPEN = "11:00 am"
-SUNCLOSE = "4:00 pm"
+FACEBOOK = "www.facebook.com"
+TWITTER = "www.twitter.com"
+LINKEDIN = "www.linkdin.com"
+MONFRI = "9:00am to 6:00pm"
+SAT = "9:00am to 6:00pm"
+SUN = "Closed"
 
 MACWIGGLE_INFO = {
-    'phone':'(512)843-2631',
     'email':'fabiano.rdj@gmail.com',
 }
 

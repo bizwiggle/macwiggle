@@ -1,6 +1,10 @@
 from django.shortcuts import render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from django.core.context_processors import request
+
+from django.template import RequestContext
+from django.core.context_processors import csrf
+
 from django.core import serializers
 from django.utils import simplejson
 from django.template.context import RequestContext
@@ -13,10 +17,10 @@ from django.db.transaction import commit
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect, HttpResponse
 
-from .info import*
+from .info import *
 from .models import Review, Macs, macsModel, macStatus, Newsletter, Contact
-from .models import Screen, Processor, hardDrive, macsBuy, Faqs
-from .forms import*
+from .models import Screen,Processor, hardDrive, macsBuy, Faqs
+from .forms import *
 from reportlab.lib.randomtext import subjects
 from hgext.histedit import message
 from django.test.testcases import to_list
@@ -30,27 +34,21 @@ context = Context({
     'FACEBOOK':FACEBOOK,
     'TWITTER':TWITTER,
     'LINKEDIN':LINKEDIN,
-    'MONFRIOPEN':MONFRIOPEN,
-    'MONFRICLOSE':MONFRICLOSE,
-    'SATOPEN':SATOPEN,
-    'SATCLOSE':SATCLOSE,
-    'SUNOPEN':SUNOPEN,
-    'SUNCLOSE':SUNCLOSE,
+    'MONFRI':MONFRI,
+    'SAT':SAT,
+    'SUN':SUN,
               
 })
+
+#this populate the Home
 def home (request):
     all_review = Review.objects.all().order_by('-data_pub')[:5]
     t = loader.get_template('home.html')
     context['all_review'] = all_review
-   
-    
-    return HttpResponse(t.render(context))
-    #print all_review[0]
-    return render_to_response("home.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
 
-#this send Sreens for select Colocar a variable
+    return HttpResponse(t.render(context))
+    
+#this return the mac Model and price
 def getPriceMac (request):
     
     if  request.method == 'GET':
@@ -65,6 +63,8 @@ def getPriceMac (request):
         json = simplejson.dumps(all_PriceMac)
         return HttpResponse(json, mimetype="text/javascript")  
 
+
+#this save form buying mac
 def sellMac(request):
     # Cria form
     form = macsBuyForm(request.GET or None)   
@@ -92,22 +92,8 @@ def sellMac(request):
                               locals(), 
                 context_instance=RequestContext(request))
      
-#def searchModel (request):
-    
-  #if request.method == 'GET':
-    #screen = request.GET.get('screen');
-    #processor = request.GET.get('processor');
-    #hd = request.GET.get('hd'); 
-    #all_Model = macsModel.objects.filter(idScreenKey_id=screen, idProcessorKey=processor,idHdKey=hd).order_by('id')
-    #if all_Model.count() > 0:
-    #    json = serializers.serialize("json",  all_Model)
-    #else:
-     #   all_Model = [{"pk":"0","fields":{'all_Model':"Nothing"}}]
-     #   json = simplejson.dumps(all_Model)
-    #return HttpResponse(json, mimetype="text/javascript") 
-
-def getPaid (request):
-    
+# This open the form buying macs 
+def getPaid (request):  
     if request.method == 'GET':
         state = request.GET.get('state');
         modelMac = request.GET.get('modelMac');
@@ -116,50 +102,39 @@ def getPaid (request):
     if all_Paid.count() > 0:
         t = loader.get_template('macPaidForm.html')
         context['all_Paid'] = all_Paid 
-        
-        return HttpResponse(t.render(context))
-        #print all_review[0]
-        return render_to_response("macPaidForm.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
-        
+        context['STATES'] = STATES
+        return HttpResponse(t.render(context)) 
     else:
         messages.success(request, 'not found Model for this.')
         return render_to_response("macPaidForm.html", 
                               locals(), 
                 context_instance=RequestContext(request))
 
-
+#This show the page macbook model and configuration
 def searchModel (request):
     
-  if request.method == 'GET':
-    screen = request.GET.get('screen');
-    processor = request.GET.get('processor');
-    hd = request.GET.get('hd'); 
-    all_Model = macsModel.objects.filter(idScreenKey_id=screen, idProcessorKey=processor,idHdKey=hd).order_by('id')
-    if all_Model.count() > 0:
+    if request.method == 'GET':
+        screen = request.GET.get('screen');
+        processor = request.GET.get('processor');
+        hd = request.GET.get('hd'); 
+        all_Model = macsModel.objects.filter(idScreenKey_id=screen, idProcessorKey=processor,idHdKey=hd).order_by('id')
+    if  all_Model.count() > 0:
         t = loader.get_template('macModelForm.html')
-        c = Context ({
-        'all_Model':all_Model,
-        })
-    
-        return HttpResponse(t.render(c))
+        context['all_Model']=all_Model
+        return HttpResponse(t.render(context))
     else:
-        #all_Model = [{"pk":"0","fields":{'all_Model':"Nothing for this Model"}}]
-        #json = simplejson.dumps(all_Model)
-    #return HttpResponse(json, mimetype="text/javascript") 
         messages.error(request, 'Model not found, Macwigle doens`t buy this model, Thanks for choose us.')
         return render_to_response("macModelForm.html", 
                               locals(), 
                 context_instance=RequestContext(request))
         
 
-#this send Sreens for select Colocar a variable
+#this populate the Sreens control
 def getScreen (request):
     
-  if request.method == 'GET':
-    id = request.GET.get('id');
-    all_Screen = Screen.objects.filter(idMacKey=id).order_by('id')
+    if  request.method == 'GET':
+        idValue = request.GET.get('id');
+        all_Screen = Screen.objects.filter(idMacKey=idValue).order_by('id')
     if all_Screen.count() > 0:
         json = serializers.serialize("json",  all_Screen)
     else:
@@ -167,13 +142,13 @@ def getScreen (request):
         json = simplejson.dumps(all_Screen)
     return HttpResponse(json, mimetype="text/javascript")  
 
-#this send Processors for select Colocar a variable
+#this populate the Processors control
 def getProcessor (request):
     
-  if request.method == 'GET':
-    id = request.GET.get('id');
-    all_Processor = Processor.objects.filter(idScreenKey_id=id).order_by('id')
-    if all_Processor.count() > 0:
+    if  request.method == 'GET':
+        idValue = request.GET.get('id');
+        all_Processor = Processor.objects.filter(idScreenKey_id=idValue).order_by('id')
+    if  all_Processor.count() > 0:
         json = serializers.serialize("json",  all_Processor)
     else:
         all_Processor = [{"pk":"0","fields":{'all_Processor':"nothing"}}]
@@ -184,38 +159,25 @@ def getProcessor (request):
 #this send Processors for select Colocar a variable
 def getHd (request):
     
-  if request.method == 'GET':
-    id = request.GET.get('id');
-    all_Hd = hardDrive.objects.filter(idProcessorKey_id=id).order_by('id')
-    if all_Hd.count() > 0:
+    if request.method == 'GET':
+        idValue = request.GET.get('id');
+        all_Hd = hardDrive.objects.filter(idProcessorKey_id=idValue).order_by('id')  
+    if  all_Hd.count() > 0:
         json = serializers.serialize("json",  all_Hd)
     else:
         all_Hd = [{"pk":"0","fields":{'all_Hd':"nothing"}}]
         json = simplejson.dumps(all_Hd)
     return HttpResponse(json, mimetype="text/javascript")    
     
-# This show page Macs search data table_Macs
+    
+# This show page Macs.html search data table_Macs
 def macs (request):    
     all_Macs = Macs.objects.all().order_by('id')[:3]
     t = loader.get_template('macs.html')
-    c = Context ({
-        'all_Macs':all_Macs,
-    })
-    
-    return HttpResponse(t.render(c))
+    context['all_Macs'] = all_Macs   
+    return HttpResponse(t.render(context))
 
-
-# This show page Macs search data table_Macs
-def macss (request):    
-    all_Macs = Macs.objects.all().order_by('id')[:3]
-    t = loader.get_template('macss.html')
-    c = Context ({
-        'all_Macs':all_Macs,
-    })
-    
-    return HttpResponse(t.render(c))
-
-
+#This save form contact and send email for Macwiggle adm
 def contactForm(request):
     # Get the context from the request.
     context = RequestContext(request)
@@ -249,8 +211,7 @@ def contactForm(request):
         return render_to_response("msgSold.html", 
                               locals(), 
                 context_instance=RequestContext(request))
-        
-        
+            
         
 def newslatter(request):
 
@@ -281,28 +242,19 @@ def newslatter(request):
                               locals(), 
                 context_instance=RequestContext(request))        
         
-       
+#This open faqs.html       
 def faqs (request):    
     all_faqs = Faqs.objects.all().order_by('-data_pub')[:5]
     t = loader.get_template('faqs.html')
     context['all_faqs'] = all_faqs
-   
-    
     return HttpResponse(t.render(context))
     #print all_faqs[0]
-    return render_to_response("faqs.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
-    
-    
+  
+df db(request):
+    all_db = Processor.objects.insert()   
+#This open contact.html    
 def contact (request):    
-    return render_to_response("contact.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
-    
-
-
-
-    return render_to_response("quote.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+    t = loader.get_template('contact.html')
+    context['PHONE'] = PHONE
+            
+    return HttpResponse(t.render(context))

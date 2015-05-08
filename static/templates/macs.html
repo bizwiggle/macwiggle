@@ -2,7 +2,7 @@
 {%block content%}
 
 <div role="main" class="main">
-	<section class="page-top">
+<section class="page-top">
     <div class="container">
                   <div class="row">
                      <div class="col-md-12">
@@ -17,11 +17,12 @@
                         <h1>Quote</h1>
                      </div>
                   </div>
-     </div>
-     </section>
+</div>
+</section>
+
+
  <div id="divshowModel"> 
-           
-           
+    
             <div class="container">
 
  <h2>Step 1 of <strong>3</strong></h2>
@@ -111,12 +112,11 @@
 
 
 
- <button id="id_button_next" style="display:none" type="submit" class="btn btn-primary btn-lg btn-block"> Next </button> 
-        
-      
-  
+ <button id="id_button_next" style="display:none" type="submit" class="btn btn-primary btn-lg btn-block"> Next </button>
   </div>
   </form> 
+  
+  
   
   <br>
   <div class="clearfix visible-xs-block"></div>
@@ -189,9 +189,6 @@ Click 'Storage' to find hard drive capacity (round up to the closest option.) Cl
 
 
 
-
-
-
   
  <div id="id_macs" class="id_macs" >
  
@@ -227,57 +224,8 @@ Click 'Storage' to find hard drive capacity (round up to the closest option.) Cl
 </div><!-- end div id_macs -->
 
 
-
-
- 
-
 <script type="text/javascript">
-//$('#macState').submit(function(){
-//	var params = $('#macState').serialize();
-
-//alert(params)
-//	if (params == "") {
-//		alert(params)
-//		} else {
-//		alert(params)
-//		return false
-//		}//fim do else
-//		return false			
-//	})
-
-
-//$('#searchModel').submit(function(){
-//var params = $('#searchModel').serialize();
-
-//if (params == "") {
-//	alert('sem model')
-//	} else {
-//	$.ajax({
-//	type:"GET",
-//	url:"/searchModel/",
-//	dataType: "json",
-//	data:params,
-//	success: function(retorno){
-//     $("#showModel").empty();
-//     $.each(retorno, function(i, item){
-//     $('#divshowModel').slideDown(retorno)
-//     $('#divshowModel').slideUp(retorno)
-//     $("#showQ").append('<h1>1. What shape is it in? </h1><form id="macState"><button type="submit" class="btn btn-warning">Next</button><tr><td value="'+item.pk+'"><b>Model: </b>'+item.fields['model']+'</td></tr></form>');
-    
-//     });
-// },
-//	})	
-//	return false
-//	}//fim do else
-//	return false			
-//})
-	
-	
-	
-
-
-
-
+//This function popolate control select Screen 
 function selectScreen(url,objHtmlReturn,id)
 {
 screenShow=$("#"+objHtmlReturn);
@@ -304,8 +252,6 @@ if($(id)==0) {
     $(proShow).removeClass('visible');
     $(proShow).addClass('invisible');
     $(proShow).slideUp('fast');
-
-    //alert('fffff');
 } 
 
 if($(id)==0) {
@@ -317,8 +263,6 @@ if($(id)==0) {
     $(hdShow).removeClass('visible');
     $(hdShow).addClass('invisible');
     $(hdShow).slideUp('fast');
-
-    //alert('fffff');
 } 
 
 if($(id)==0) {
@@ -334,9 +278,12 @@ if($(id)==0) {
 } 
    // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
    dados = {'id':id};
-   if (dados == "") {
+   if (dados == "") 
+   { 
 	 	alert('sem model')
-   } else {
+   } 
+   else 
+   {
    // É inserido um elemento option dentro do elemento select
       $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
       $.ajax({
@@ -354,17 +301,17 @@ if($(id)==0) {
             $.each(retorno, function(i, item){
             $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['size']+'</option>');
             });
-        },
-            error: function(erro) {
-               alert('Erro.');
-             }
+        	},
+            	error: function(erro) {
+                alert('Erro.');
+            	}
          });
-   	return false
+   		return false
    	}//fim do else
    	return false
 }   
    
-   
+//This function popolate control select Processor   
 function selectProcessor(url,objHtmlReturn,id)
 {
  proShow=$("#"+objHtmlReturn);
@@ -403,9 +350,9 @@ function selectProcessor(url,objHtmlReturn,id)
 	    $(id_button_next).slideUp('fast');
 
 	} 
-// Cria uma variável dados em formato JSON, com 1 chave e 1 valor
-dadosPro = {'id':id};
-// É inserido um elemento option dentro do elemento select
+	// Cria uma variável dados em formato JSON, com 1 chave e 1 valor
+	dadosPro = {'id':id};
+	// É inserido um elemento option dentro do elemento select
   $("#"+objHtmlReturn).html('<option value="0">Loading...</option>');
   $.ajax({
      type: "GET",
@@ -420,7 +367,7 @@ dadosPro = {'id':id};
         $.each(retorno, function(i, item){
         $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['processor']+'</option>');
     	});
-    },
+    	},
         error: function(erro) {
            alert('Error.');
          }
@@ -434,27 +381,26 @@ function selectHd(url,objHtmlReturn,id)
 {
 hdShow=$("#"+objHtmlReturn);
 
- if($(id)==0) {
+if($(id)==0) {
      $(hdShow).removeClass('visible');
      $(hdShow).addClass('invisible');
      $(hdShow).slideUp('fast');
- } else {
+} else {
      $(hdShow).removeClass('invisible');
      $(hdShow).addClass('visible');
      $(hdShow).slideDown('fast');
  }
  
- if($(id)==0) {
-	    
-		$(id_button_next).removeClass('visible');
-	    $(id_button_next).addClass('invisible');
-	    $(id_button_next).slideUp('fast');
-	} else {  
-	    $(id_button_next).removeClass('visible');
-	    $(id_button_next).addClass('invisible');
-	    $(id_button_next).slideUp('fast');
+if($(id)==0) { 
+	 $(id_button_next).removeClass('visible');
+	 $(id_button_next).addClass('invisible');
+	 $(id_button_next).slideUp('fast');
+} else {  
+	 $(id_button_next).removeClass('visible');
+	 $(id_button_next).addClass('invisible');
+	 $(id_button_next).slideUp('fast');
+}
 
-	} 
 // Cria uma variável dados em formato JSON, com 1 chave e 1 valor
 dadosHd = {'id':id};
 // É inserido um elemento option dentro do elemento select
@@ -472,13 +418,12 @@ dadosHd = {'id':id};
         $.each(retorno, function(i, item){
         $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['drive']+'</option>');
     	});
-    },
-        error: function(erro) {
-           alert('Error.');
-         }
+    	},
+        	error: function(erro) {
+          		 alert('Error.');
+         	}
      });
 }   
-
 
 
 function showBtn(objHtmlReturn)
@@ -498,10 +443,5 @@ hdShow=$("#"+objHtmlReturn);
  }
 }
 </script>
-
-
-       
-     
-     
-      		
+    		
 {%endblock%}
