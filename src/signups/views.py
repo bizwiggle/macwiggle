@@ -12,7 +12,6 @@ from django.template import Context, loader, context
 from django.conf import settings
 from django.core.mail import send_mail
 
-from hgext.mq import save
 from django.db.transaction import commit
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect, HttpResponse
@@ -21,8 +20,6 @@ from .info import *
 from .models import Review, Macs, macsModel, macStatus, Newsletter, Contact
 from .models import Screen,Processor, hardDrive, macsBuy, Faqs
 from .forms import *
-from reportlab.lib.randomtext import subjects
-from hgext.histedit import message
 from django.test.testcases import to_list
 
 context = Context({
@@ -250,8 +247,7 @@ def faqs (request):
     return HttpResponse(t.render(context))
     #print all_faqs[0]
   
-df db(request):
-    all_db = Processor.objects.insert()   
+  
 #This open contact.html    
 def contact (request):    
     t = loader.get_template('contact.html')
