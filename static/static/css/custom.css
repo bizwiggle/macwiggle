@@ -56,9 +56,20 @@ img.center-pic {
 	
 }
 
-#selectQuote{
-	text-align: left;
+@media screen and (max-width: @screen-xs) {
+    #selectQuote {
+  		text-align: center;
+        font-size:2px;
+    }
 }
+ 
+@media screen and (max-width: @screen-sm) {
+    #selectQuote {
+        font-size:22px;
+    }
+}
+
+
 #select{
 	width:100%;
 	text-align: center;
@@ -66,36 +77,50 @@ img.center-pic {
 	margin-left: 10px;
 	
 }
-
-#help{
+#select1{
+	text-align: center;
+	margin-bottom: 20px;
+	margin-left: 2px;
 	
-	height: 300px;
+}
+.helpImg{
+	padding: 20px;
+	
+}
+#help{
+	height: 375px;
 	overflow: scroll;
 	padding: 20px;
     margin: 0px 0px;
-    border-width: 2px 2px 2px 5px;
-    border-style: solid;
-    border-color: #EEE;
-    border-left-color: #EEE;
+    border-bottom:1px solid #1B809E;
+    border-top:1px solid #1B809E;
+    border-right:5px solid #1B809E;
+    border-left:5px solid #1B809E;
     -moz-border-top-colors: none;
     -moz-border-right-colors: none;
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     border-image: none;
     border-radius: 3px;
+    color: black;
 	
 }
-
+#helpBorder{
+	border-bottom: 1px dashed blue;
+}
 #help_title{
 	text-align: center;
-	border-color: gray;
-	border-style: dotted;
+	border: 1px solid blue;
+	color: black;
+	margin: 5px;
+	padding: 5px;
 }
 
 textHelp{
 	text-align: left;
 	background-color:windowtext;
 	color: blue;
+	padding: 20px;
 }
 
 #infoMacModel{
@@ -104,21 +129,14 @@ textHelp{
 	margin-top: 30px;
 	
 }
-
+.printMacModel{
+	font-size: 30px;
+}
 
 .bs-left {
     padding: 20px;
     margin: 20px 0px;
-    border-width: 2px 2px 2px 5px;
-    border-style: solid;
-    border-color: #EEE;
-    border-left-color: #1B809E;
-    -moz-border-top-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    border-image: none;
-    border-radius: 3px;
+   
     font-size: 12px;
 }
 
@@ -128,14 +146,13 @@ textHelp{
     border-width: 2px 2px 2px 5px;
     border-style: solid;
     border-color: #EEE;
-    border-top-color: #1B809E;
-    -moz-border-top-colors: none;
+    border-left-color: #0c70b4;
     -moz-border-right-colors: none;
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     border-image: none;
     border-radius: 3px;
     text-align: justify;
-    font-size: 12px;
-    height: 140px;
+    font-size: 14px;
+    height: 200px;
 }

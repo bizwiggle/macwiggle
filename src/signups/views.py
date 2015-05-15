@@ -1,9 +1,6 @@
 from django.shortcuts import render, render_to_response
-from django.views.decorators.csrf import csrf_exempt
 from django.core.context_processors import request
 
-from django.template import RequestContext
-from django.core.context_processors import csrf
 
 from django.core import serializers
 from django.utils import simplejson
@@ -19,11 +16,12 @@ from django.http.response import HttpResponseRedirect, HttpResponse
 from .info import *
 from .models import Review, Macs, macsModel, macStatus, Newsletter, Contact
 from .models import Screen,Processor, hardDrive, macsBuy, Faqs
-from .forms import *
+from .forms import * 
 from django.test.testcases import to_list
 
 context = Context({
     'PHONE': PHONE,
+    'PHONE1': PHONE1,
     'STREET_ADDRESS':STREET_ADDRESS,  
     'CITY':CITY,
     'STATE':STATE,
@@ -64,10 +62,10 @@ def getPriceMac (request):
 #this save form buying mac
 def sellMac(request):
     # Cria form
-    form = macsBuyForm(request.GET or None)   
+    f = macsBuyForm(request.POST)   
     # Valida e salva
-    if form.is_valid():
-        salvar = form.save(commit=False)
+    if f.is_valid():
+        salvar = f.save(commit=False)
         salvar.save()
         #send_email(subject, message, frim_email, to_list, fail_silently=True)
         subjects = "Pre-Order Macwiggle"
@@ -114,7 +112,8 @@ def searchModel (request):
         screen = request.GET.get('screen');
         processor = request.GET.get('processor');
         hd = request.GET.get('hd'); 
-        all_Model = macsModel.objects.filter(idScreenKey_id=screen, idProcessorKey=processor,idHdKey=hd).order_by('id')
+        md = request.GET.get('md'); 
+        all_Model = macsModel.objects.filter(idScreenKey_id=screen, idProcessorKey=processor,idHdKey=hd,id=md).order_by('id')
     if  all_Model.count() > 0:
         t = loader.get_template('macModelForm.html')
         context['all_Model']=all_Model
@@ -130,8 +129,8 @@ def searchModel (request):
 def getScreen (request):
     
     if  request.method == 'GET':
-        idValue = request.GET.get('id');
-        all_Screen = Screen.objects.filter(idMacKey=idValue).order_by('id')
+        id = request.GET.get('id');
+        all_Screen = Screen.objects.filter(idMacKey=id).order_by('id')
     if all_Screen.count() > 0:
         json = serializers.serialize("json",  all_Screen)
     else:
@@ -143,8 +142,8 @@ def getScreen (request):
 def getProcessor (request):
     
     if  request.method == 'GET':
-        idValue = request.GET.get('id');
-        all_Processor = Processor.objects.filter(idScreenKey_id=idValue).order_by('id')
+        id = request.GET.get('id');
+        all_Processor = Processor.objects.filter(idScreenKey_id=id).order_by('id')
     if  all_Processor.count() > 0:
         json = serializers.serialize("json",  all_Processor)
     else:
@@ -157,14 +156,27 @@ def getProcessor (request):
 def getHd (request):
     
     if request.method == 'GET':
-        idValue = request.GET.get('id');
-        all_Hd = hardDrive.objects.filter(idProcessorKey_id=idValue).order_by('id')  
+        id_p = request.GET.get('id_p');
+        id_s = request.GET.get('id_s');
+        all_Hd = hardDrive.objects.filter(idProcessorKey_id=id_p, idScreenKey_id=id_s).order_by('id')  
     if  all_Hd.count() > 0:
         json = serializers.serialize("json",  all_Hd)
     else:
         all_Hd = [{"pk":"0","fields":{'all_Hd':"nothing"}}]
         json = simplejson.dumps(all_Hd)
-    return HttpResponse(json, mimetype="text/javascript")    
+    return HttpResponse(json, mimetype="text/javascript")
+
+def getModel (request):
+    
+    if request.method == 'GET':
+        idValue = request.GET.get('id');
+        all_Md = macsModel.objects.filter(idHdKey_id=idValue).order_by('id')  
+    if  all_Md.count() > 0:
+        json = serializers.serialize("json",  all_Md)
+    else:
+        all_Md = [{"pk":"0","fields":{'all_Md':"nothing"}}]
+        json = simplejson.dumps(all_Md)
+    return HttpResponse(json, mimetype="text/javascript")      
     
     
 # This show page Macs.html search data table_Macs
@@ -227,15 +239,15 @@ def newslatter(request):
         
         send_mail("jjjj", "oooo", from_email, to_list, fail_silently=True)
        
-        messages.success(request, 'Thanks for Sell to us. Wait for your contact E-mail.') 
+        messages.success(request, 'Thanks for assign our Newslatter.') 
         #return HttpResponse("Dados inseridos com sucesso!")
         return render_to_response("msgSold.html", 
                               locals(), 
                 context_instance=RequestContext(request))
     else:
     # Chama Template
-        messages.error(request, 'Model not found.')
-        return render_to_response("msgSold.html", 
+        messages.error(request, 'not found.')
+        return render_to_response("msgNewslatter.html", 
                               locals(), 
                 context_instance=RequestContext(request))        
         

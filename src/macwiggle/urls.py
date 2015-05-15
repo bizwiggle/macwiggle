@@ -18,6 +18,7 @@ urlpatterns = patterns('',
      url(r'^newslatter/$', 'signups.views.newslatter', name='newslatter'),
      
 
+     url(r'^getModel/$', 'signups.views.getModel', name='getModel'),
      url(r'^sellMac/$', 'signups.views.sellMac', name='sellMac'),
      url(r'^getPaid/$', 'signups.views.getPaid', name='getPaid'),
      url(r'^getPriceMac/$', 'signups.views.getPriceMac', name='getPriceMac'),

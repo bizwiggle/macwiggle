@@ -10,6 +10,7 @@
 						<ul class="nav nav-pills nav-top">
 							<li class="phone">
 								<span><i class="fa fa-phone"></i>{{ PHONE }}</span>
+								<span><i class="fa fa-phone"></i>{{ PHONE1 }}</span>
 							</li>
 						</ul>
 					</nav>
@@ -20,9 +21,17 @@
 				<div class="navbar-collapse nav-main-collapse collapse">
 					<div class="container">
 						<ul class="social-icons">
-							<li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
-							<li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
-							<li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+						{% if FACEBOOK %}
+							<li class="facebook"><a href="{{ FACEBOOK }}" target="_blank" title="Facebook">Facebook</a></li>
+							{% endif %}
+							
+							{% if TWITTER %}
+							<li class="twitter"><a href="{{ TWITTER }}" target="_blank" title="Twitter">Twitter</a></li>
+							{% endif %}
+							
+							{% if LINKEDIN %}
+							<li class="linkedin"><a href="{{ LINKEDIN }}" target="_blank" title="Linkedin">Linkedin</a></li>
+							{% endif %}
 						</ul>
 						<nav class="nav-main mega-menu">
 							<ul class="nav nav-pills nav-main" id="mainMenu">

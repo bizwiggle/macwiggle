@@ -1,45 +1,132 @@
 {% extends 'base.html' %}
 {%block content%}
 <style type="text/css">
-label {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    padding-left: 25px;
-    margin-right: 15px;
-    font-size: 13px;
-}
-
-label:before {
-    content: "";
-    display: inline-block;
- 
-    width: 16px;
-    height: 16px;
- 
-    margin-right: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 1px;
-    background-color: #aaa;
-    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-}
-
-input[type=radio] {
-    display: none;
-}
-
-.radio label:before {
-    border-radius: 8px;
-}
-
-input[type=radio]:checked + label:before {
-    content: "\2022";
-    color: #f3f3f3;
-    font-size: 30px;
-    text-align: center;
-    line-height: 18px;
-}
+	@-webkit-keyframes
+	cardEnter {  0%, 20%, 40%, 60%, 80%, 100% {
+	 -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	 transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+	 0% {
+	 opacity: 0;
+	 -webkit-transform: scale3d(0.3, 0.3, 0.3);
+	}
+	 20% {
+	 -webkit-transform: scale3d(1.1, 1.1, 1.1);
+	}
+	 40% {
+	 -webkit-transform: scale3d(0.9, 0.9, 0.9);
+	}
+	 60% {
+	 opacity: 1;
+	 -webkit-transform: scale3d(1.03, 1.03, 1.03);
+	}
+	 80% {
+	 -webkit-transform: scale3d(0.97, 0.97, 0.97);
+	}
+	 100% {
+	 opacity: 1;
+	 -webkit-transform: scale3d(1, 1, 1);
+	}
+	}
+	@keyframes
+	cardEnter {  0%, 20%, 40%, 60%, 80%, 100% {
+	 -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	 transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+	 0% {
+	 opacity: 0;
+	 -webkit-transform: scale3d(0.3, 0.3, 0.3);
+	 transform: scale3d(0.3, 0.3, 0.3);
+	}
+	 20% {
+	 -webkit-transform: scale3d(1.1, 1.1, 1.1);
+	 transform: scale3d(1.1, 1.1, 1.1);
+	}
+	 40% {
+	 -webkit-transform: scale3d(0.9, 0.9, 0.9);
+	 transform: scale3d(0.9, 0.9, 0.9);
+	}
+	 60% {
+	 opacity: 1;
+	 -webkit-transform: scale3d(1.03, 1.03, 1.03);
+	 transform: scale3d(1.03, 1.03, 1.03);
+	}
+	 80% {
+	 -webkit-transform: scale3d(0.97, 0.97, 0.97);
+	 transform: scale3d(0.97, 0.97, 0.97);
+	}
+	 100% {
+	 opacity: 1;
+	 -webkit-transform: scale3d(1, 1, 1);
+	 transform: scale3d(1, 1, 1);
+	}
+	}
+	
+	
+.radioQuote {
+	  display: inline-block;
+	  padding-right: 20px;
+	  font-size: 20px;
+	  line-height: 49px;
+	  cursor: pointer;
+	  color: black;
+	}
+	 
+	.radioQuote:hover .inner {
+	  -webkit-transform: scale(0.5);
+	  -ms-transform: scale(0.5);
+	  transform: scale(0.5);
+	  opacity: .5;
+	}
+	 
+	.radioQuote input {
+	  width: 1px;
+	  height: 1px;
+	  opacity: 0;
+	}
+	 
+	.radioQuote input:checked + .outer .inner {
+	  -webkit-transform: scale(1);
+	  -ms-transform: scale(1);
+	  transform: scale(1);
+	  opacity: 1;
+	}
+	 
+	.radioQuote input:checked + .outer { border: 3px solid #f08b3b; }
+	 
+	.radioQuote input:focus + .outer .inner {
+	  -webkit-transform: scale(1);
+	  -ms-transform: scale(1);
+	  transform: scale(1);
+	  opacity: 1;
+	  background-color: #e67012;
+	}
+	 
+	.radioQuote .outer {
+	  width: 20px;
+	  height: 20px;
+	  display: block;
+	  float: left;
+	  margin: 10px 9px 10px 10px;
+	  border: 3px solid #0c70b4;
+	  border-radius: 50%;
+	  background-color: #fff;
+	}
+	 
+	.radioQuote .inner {
+	  -webkit-transition: all 0.25s ease-in-out;
+	  transition: all 0.25s ease-in-out;
+	  width: 16px;
+	  height: 16px;
+	  -webkit-transform: scale(0);
+	  -ms-transform: scale(0);
+	  transform: scale(0);
+	  display: block;
+	  margin: 2px;
+	  border-radius: 50%;
+	  background-color: #f08b3b;
+	  opacity: 0;
+	}
 </style>
 <div role="main" class="main">
 	<section class="page-top">
@@ -98,77 +185,85 @@ input[type=radio]:checked + label:before {
      
     
     {% for mac in all_Model %}
-<div class="row bs-left" id="">
+<div class="row bs-top" id="">
 
   <div class="col-xs-5 col-sm-4">
      <img class="img-responsive" src="/static/img/macs/macbook.jpg"/>
   </div>
   
  <div id="infoMacModel" class="col-xs-7 col-sm-8">
-<b>{{ mac.idMacKey }} {{ mac.model }}</b> {{ mac.idProcessorKey }}
+<b><div class="printMacModel">{{ mac.model }}</div></b><br> {{ mac.idProcessorKey }}
 {{ mac.idScreenKey }} {{ mac.idHdKey }}
   </div>
 </div>    
-    
-  <div style="margin:10px; class="col-xs-12 col-sm-12"><h4>1. What shape is it in?</h4>
-  </div>
+  
   
 <div class="row visible-on">
 
+  
  
 
 <div class="hidden-xs bs-top">
+
+  <div style="margin:10px; class="col-xs-12 col-sm-12"><h4>1. What shape is it in?</h4>
+  </div>
+
 <form method="GET" id="formMacPrice">
 <input name="modelMac" type="hidden" value="{{ mac.id }}">
   
   
   <div class="col-sm-3" id="">
-    <div id='poor' class="radio">
-    <label>Broken
-  <input id="" type="radio" value="1" name="getState">
-   </label>
-    	
-    	<p>Does not power on, has multiple functional defects, or has severe <span>physical damage</span></p>
-    </div>
+    <div id='poor' class="hhh">
+    <label class="radioQuote"><input type="radio" id="Fair" value="1" name="getState">
+    <span class="outer"><span class="inner"></span></span>Broken</label>
+    	</div>
+    	<p>Does not power on, has multiple functional defects, or has severe <b>physical damage</b></p>
+    
   </div>
   
   <div class="col-sm-3" id="">
-  <div id='fair' class="radio">
-    <label>Fair 
-<input id="Fair" type="radio" value="2" name="getState"></label> 
-    	<p>Has moderate to heavy <span>physical defects</span>, or minor <span>functional defects</span></p>
-    </div>
+ <div id='fair' class="hhh">
+    <label class="radioQuote"><input type="radio" id="Fair" value="2" name="getState">
+    <span class="outer"><span class="inner"></span></span>Fair</label>
+    	</div>
+    	<p>Has moderate to heavy <b>physical defects</b>, or minor <b>functional defects</b></p>
+    
   </div>
 
   <!-- Add the extra clearfix for only the required viewport -->
   <div class="clearfix visible-xs-block"></div>
 
   <div class="col-sm-3" id="">
-    <div id='good' data-option='631' class="radio">
-  <label>Good<input id="" type="radio" value="3" name="getState"></label>
-    	
-    	<p><span>Normal signs</span> of everyday use</p>
-    </div>
+    <div id='good' class="hhh">
+    <label class="radioQuote"><input type="radio" id="Fair" value="3" name="getState">
+    <span class="outer"><span class="inner"></span></span>Good</label>
+    	</div>
+    	<p><b>Normal signs</b> of everyday use</p>
+    
   </div>
   
   <div class="col-sm-3" id="">
-  <div id='perfect' data-option='632' class="radio">
-    	<label>Flawless
-  <input id="Flawless" type="radio" value="4" name="getState"></label>
-    	
-    	<p>Looks like it's <span>never been used</span></p>
+  <div id='poor' class="hhh">
+    <label class="radioQuote"><input type="radio"  id="Flawless" type="radio" value="4" name="getState">
+    <span class="outer"><span class="inner"></span></span>Flawless</label>
+    	</div>
+  
+    	<p>Looks like it's <b>never been used</b></p>
     </div>
-  </div>
+ 
   
   </form>
   </div>
   
   
  <div class="visible-xs">
+ 
+  <div align="center" style="margin:10px; class="col-xs-12 col-sm-12"><h4> 1. What shape is it in?</h4>
+  </div>
  <form method="GET" id="formMacPriceMob">
 
- <div align="left" id="select" class="row col-xs-10">
- <div id="select" class="row col-xs-10">
+ <div align="center" id="select1" class="row col-xs-12">
+ <div align="right" id="select1" class="row col-xs-12">
   <select name="getState" class="form-control input-lg">
   <option value="0">Select</option>
   <option value="1">Broken</option>
@@ -211,7 +306,7 @@ input[type=radio]:checked + label:before {
 
 {% endif %}
 <div id="id_price1">
-<div id="id_macs" class="id_macs col-sm-12 col-xm-12" >
+<!-- <div id="id_macs" class="id_macs col-sm-12 col-xm-12" >
  
 <div class="col-sm-4 col-xm-12">
  <h3>Breaking News</h3>
@@ -226,7 +321,7 @@ input[type=radio]:checked + label:before {
  <p><a href="/iphone">Sell your broken iPhone</a></p>
  <a href="/iphone"><img src="https://cdn.gazelle.com/cms-assets/assets/195/broken_iphone_original.jpg"></a>
   </div>
-  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  Optional: clear the XS cols if their content doesn't match in height
   <div class="clearfix visible-xs-block"></div>
   
   
@@ -239,7 +334,7 @@ input[type=radio]:checked + label:before {
  
  
  
- </div><!-- end div cointaner -->
+ </div>end div cointaner -->
 </div>
 
 
@@ -269,7 +364,7 @@ $("#formMacPrice").change(function(){
 	        $.each(retorno, function(i, item){
 	        $('#id_price1').slideDown(retorno)
 	        $('#id_price1').slideUp(retorno)
-	        $('html, body').animate({scrollTop:520}, 'slow');
+	        $('html, body').animate({scrollTop:180}, 'slow');
 
 	        if (item.pk == 0){
 		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>MacWiggle doens`t buy this  product.<br></div>');
@@ -303,7 +398,7 @@ $("#formMacPriceMob").change(function(){
 	        $.each(retorno, function(i, item){
 	        $('#id_price1').slideDown(retorno)
 	        $('#id_price1').slideUp(retorno)
-	        $('html, body').animate({scrollTop:600}, 'slow');
+	        $('html, body').animate({scrollTop:180}, 'slow');
 
 	        if (item.pk == 0){
 		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>MacWiggle doens`t buy this  product.<br></div>');

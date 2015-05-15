@@ -94,10 +94,10 @@
 			
 			
 			
-								<form method="GET" id="newsletterForm" action="/1212newslatter/">
+								<form method="GET" id="newslatter" action="/newslatter/">
 								
 									<div class="input-group">
-										<input class="form-control" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
+										<input class="form-control" placeholder="Email Address" name="email" id="email" type="text">
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>
@@ -107,7 +107,7 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<h4>Latest Tweets</h4>
+							<h4>About us</h4>
 							<div id="tweet" class="twitter" data-plugin-tweets data-plugin-options='{"username": "bizwiggle", "count": 2}'>
 								<p>
 								
@@ -120,6 +120,8 @@
 								<ul class="contact">
 									<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong>{{ STREET_ADDRESS }}</p></li>
 									<li><p><i class="fa fa-phone"></i> <strong>Phone: </strong>{{ PHONE }}
+									</p></li>
+									<li><p><i class="fa fa-phone"></i> <strong>Phone: </strong>{{ PHONE1 }}
 									
 									</p></li>
 									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:{{ EMAIL }}">{{ EMAIL }}</a></p></li>
@@ -131,8 +133,8 @@
 							<div class="social-icons">
 								<ul class="social-icons">
 									{% if FACEBOOK %}
-									<li class="facebook"><a href="{{ FACEBOOK }}" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
-									{% endif%}
+									<li class="facebook"><a target="_blank" href="{{ FACEBOOK }}" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
+									{% endif %}
 									
 									{% if TWITTER %}
 									<li class="twitter"><a href="{{ TWITTER }}" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
@@ -225,7 +227,7 @@
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
       <script>
 
-         /*
+          /*
          Map Settings
 
             Find the Latitude and Longitude of your address:
@@ -236,8 +238,8 @@
 
          // Map Markers
          var mapMarkers = [{
-            address: "New York, NY 10017",
-            html: "<strong>Austin Office</strong><br>1616 West 6th Street Unit 234",
+            address: "Palatine, Il 60067",
+            html: "<strong>Macwiggle Offices</strong><br>Palatine, IL 60067",
             icon: {
                image: "img/pin.png",
                iconsize: [26, 46],
@@ -247,8 +249,8 @@
          }];
 
          // Map Initial Location
-         var initLatitude = 30.27641;
-         var initLongitude = -97.76309;
+         var initLatitude = 42.12580;
+         var initLongitude = -88.07436;
 
         // Map Extended Settings
          var mapSettings = {
@@ -265,7 +267,7 @@
             markers: mapMarkers,
             latitude: initLatitude,
             longitude: initLongitude,
-            zoom: 16
+            zoom: 10
          };
 
          var map = $("#googlemaps").gMap(mapSettings);

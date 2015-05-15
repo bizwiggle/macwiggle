@@ -1,14 +1,15 @@
-PHONE = "(512) 444-4532"
-STREET_ADDRESS = "12443 Tech Ridge Blvd"
+PHONE = "(312) 690-6245"
+PHONE1 = "Toll-Free: (800) 747-1023"
+STREET_ADDRESS = "1280 W Northwest Highway, Palatine, IL 60067"
 CITY = "Austin"
 STATE = "Tx"
-EMAIL = "teste@teste.com"
+EMAIL = "info@macwiggle.com"
 FACEBOOK = "www.facebook.com"
-TWITTER = "www.twitter.com"
-LINKEDIN = "www.linkdin.com"
-MONFRI = "9:00am to 6:00pm"
+TWITTER = ""
+LINKEDIN = ""
+MONFRI = "9:00am to 9:00pm"
 SAT = "9:00am to 6:00pm"
-SUN = "Closed"
+SUN = "9:00am to 2:00pm"
 
 MACWIGGLE_INFO = {
     'email':'fabiano.rdj@gmail.com',

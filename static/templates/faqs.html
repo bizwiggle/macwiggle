@@ -22,13 +22,7 @@
             <div class="container">
 
                <h2>Frequently Asked <strong>Questions</strong></h2>
-               <div class="row">
-                  <div class="col-md-12">
-                     <p class="lead">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla non pulvinar. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eu risus enim, ut pulvinar lectus. Sed hendrerit nibh metus.
-                     </p>
-                  </div>
-               </div>
+             
 
                <hr>
 {% if all_faqs %}
@@ -37,7 +31,7 @@
                   <div class="col-md-12">
 {% for faqs in all_faqs %}
                      <div class="toogle" data-plugin-toggle>
-                        <section class="toggle active">
+                        <section class="toggle">
                            <label>{{faqs.question}}</label>
                            <p>{{faqs.answer}}</p>
                         </section>

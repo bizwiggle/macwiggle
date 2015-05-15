@@ -173,7 +173,7 @@
               </div>
               <div class="col-md-4">
                 <div class="get-started">
-                  <a href='{% url "macs" %}' class="btn btn-xlg btn-primary">Get Your Quote!</a>
+                  <a href='{% url "macs" %}' class="btn btn-default btn-lg btn-primary">Get Your Quote!</a>
                   <!-- div class="learn-more">or <a href="index.html">learn more.</a></div -->
                 </div>
               </div>
@@ -202,7 +202,8 @@
 							<img class="img-responsive center-pic" src="/static/img/clipart/quote.png">
 							<div class="pad20"></div>
 							<h3>Get a Quote</h3>
-          		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          		<p>Contact our awesome support team at (800) 747-1023 to tell us about your device and
+          		 receive an immediate offer for either a trade-in or cash purchase price. </p>
         		</div>
 						
 						<div class="col-md-4">
@@ -210,7 +211,7 @@
 							<img class="img-responsive center-pic" src="/static/img/clipart/box.png">
 							<div class="pad20"></div>
 							<h3>Ship for Free</h3>
-          		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          		<p>We then email a pre-paid shipping label for sending your device to us. </p>
         		</div>
 
 						<div class="col-md-4">
@@ -218,7 +219,7 @@
 							<img class="img-responsive center-pic" src="/static/img/clipart/piggy.png">
 							<div class="pad20"></div>
 							<h3>Get Paid</h3>
-          		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          		<p>Once we receive your device, we review it to verify it is as described and then we pay you.</p>
         		</div>
 
 					</div>
@@ -329,12 +330,18 @@
                    <div>
                                <div class="col-md-12">
 					           <blockquote class="testimonial">
-					           <p>{{ enquete.review }}</p>
+					           <p>{{ enquete.review }}</p></blockquote>
 					           <div class="testimonial-arrow-down"></div>
+					           
+	
                                <div class="testimonial-author">
+                               <div class="img-thumbnail img-thumbnail-small">
+							<img src="img/clients/client-1.jpg" alt="">
+							</div>
+							
                                <p><strong>{{enquete.ReviewName}}</strong><span>{{enquete.ReviewProf}}</span></p>
                                </div>
-                               </blockquote>
+                               
                                </div>
                   </div>
 			     {% endfor %}
