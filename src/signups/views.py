@@ -1,17 +1,18 @@
 from django.shortcuts import render, render_to_response
 from django.core.context_processors import request
 
-
 from django.core import serializers
 from django.utils import simplejson
 from django.template.context import RequestContext
 from django.template import Context, loader, context
 from django.conf import settings
 from django.core.mail import send_mail
+from django.shortcuts import redirect
 
 from django.db.transaction import commit
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .info import *
 from .models import Review, Macs, macsModel, macStatus, Newsletter, Contact
@@ -60,30 +61,46 @@ def getPriceMac (request):
 
 
 #this save form buying mac
+@csrf_exempt
 def sellMac(request):
-    # Cria form
-    f = macsBuyForm(request.POST)   
-    # Valida e salva
-    if f.is_valid():
-        salvar = f.save(commit=False)
-        salvar.save()
-        #send_email(subject, message, frim_email, to_list, fail_silently=True)
-        subjects = "Pre-Order Macwiggle"
-        message = "Thanks for Sell to us"
-        from_email = settings.EMAIL_HOST_USER
-        to_list = ["fabiano.rdj@gmail.com"]
+    
+    context = RequestContext(request)
+    if request.method == "POST":
+        # Cria form
+        form = macsBuyForm(request.POST)
         
-        send_mail("jjjj", "oooo", from_email, to_list, fail_silently=True)
-       
-        messages.success(request, 'Thanks for Sell to us. Wait for your contact E-mail.') 
-        #return HttpResponse("Dados inseridos com sucesso!")
-        return render_to_response("msgSold.html", 
+        fullName = request.POST.get('fullName')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        zipCode = request.POST.get('zipCode')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        macModel = request.POST.get('macModel')
+        macPrice = request.POST.get('macPrice')
+        macState = request.POST.get('macState')
+
+        # Valida e salva
+        if form.is_valid():
+            post = form.save(commit=True)
+            subjects = "Macwiggle - Selling Form"
+            msg = "Full Name: " +fullName+ "\nEmail: " + email + "\nPhone: "+phone+ "\nZipCode: "+zipCode+"\nAddress : " +address+ "\nCity: " + city + "\nState: "+state+ "\nMac Model: "+macModel+"\nMacBook Price: " +macPrice+ "\nMacBook Condition: " + macState
+        
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [email, settings.EMAIL_HOST_USER]
+            send_mail(subjects, msg, from_email, to_list, fail_silently=True)
+            messages.success(request, 'Thanks for Sell to us. Wait for your contact E-mail.') 
+            #return HttpResponse("Dados inseridos com sucesso!")
+            return render_to_response("msgSold.html", 
                               locals(), 
                 context_instance=RequestContext(request))
+        else:
+            # The supplied form contained errors - just print them to the terminal.
+            print form.errors
     else:
     # Chama Template
-        messages.error(request, 'Model not found.')
-        return render_to_response("msgSold.html", 
+        messages.error(request, 'not found.')
+        return render_to_response("macPaidForm.html", 
                               locals(), 
                 context_instance=RequestContext(request))
      
@@ -187,31 +204,33 @@ def macs (request):
     return HttpResponse(t.render(context))
 
 #This save form contact and send email for Macwiggle adm
+@csrf_exempt  
 def contactForm(request):
-    # Get the context from the request.
-    context = RequestContext(request)
-
-    # A HTTP POST?
+    
     if request.method == 'POST':
         # Cria form
         form = contactForms(request.POST or None)   
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        msg = request.POST.get('msg')
         # Valida e salva
         form.is_valid()
         salvar = form.save(commit=False)
         salvar.save()
         
-        subject='teste'
-        message='jjjjjjj'
-        from_email=settings.EMAIL_HOST_USER
-        recipient_list=(salvar.email, settings.EMAIL_HOST_USER)
+        #send_email(subject, message, frim_email, to_list, fail_silently=True)
+        subjects = "Macwiggle - Contact Form"
+        msg = "Full Name: " +name+ "\nEmail: " + email + "\nSubject: "+subject+ "\nMsg: "+msg
         
-        send_mail(subject, message, from_email, recipient_list, fail_silently=True)
-        
-        
-   
-        messages.success(request, 'Thanks for Sell to us. Wait for your contact E-mail.') 
+        from_email = settings.EMAIL_HOST_USER
+        to_list = [email, settings.EMAIL_HOST_USER]
+        send_mail(subjects, msg, from_email, to_list, fail_silently=True)
+       
+       
+        messages.success(request, 'Thanks for you Contact us.') 
         #return HttpResponse("Dados inseridos com sucesso!")
-        return render_to_response("msgSold.html", 
+        return render_to_response("msgContact.html", 
                               locals(), 
                 context_instance=RequestContext(request))
     else:
@@ -221,27 +240,28 @@ def contactForm(request):
                               locals(), 
                 context_instance=RequestContext(request))
             
-        
+@csrf_exempt        
 def newslatter(request):
 
-    if request.method == 'GET':
+    if request.method == 'POST':
         # Cria form
-        form = newslatterForm(request.GET or None)   
+        form = newslatterForm(request.POST or None)   
+        message = request.POST.get('email')
         # Valida e salva
         form.is_valid()
         salvar = form.save(commit=False)
         salvar.save()
-        #send_email(subject, message, frim_email, to_list, fail_silently=True)
-        subjects = "Pre-Order Macwiggle"
-        message = "Thanks for Sell to us"
-        from_email = settings.EMAIL_HOST_USER
-        to_list = ["fabiano.rdj@gmail.com"]
         
-        send_mail("jjjj", "oooo", from_email, to_list, fail_silently=True)
+        #send_email(subject, message, frim_email, to_list, fail_silently=True)
+        subjects = "Macwiggle - Newslatter"
+        from_email = settings.EMAIL_HOST_USER
+        to_list = [message, settings.EMAIL_HOST_USER]
+        send_mail(subjects, message, from_email, to_list, fail_silently=True)
+       
        
         messages.success(request, 'Thanks for assign our Newslatter.') 
         #return HttpResponse("Dados inseridos com sucesso!")
-        return render_to_response("msgSold.html", 
+        return render_to_response("msgNewslatter.html", 
                               locals(), 
                 context_instance=RequestContext(request))
     else:
@@ -264,5 +284,5 @@ def faqs (request):
 def contact (request):    
     t = loader.get_template('contact.html')
     context['PHONE'] = PHONE
-            
+       
     return HttpResponse(t.render(context))

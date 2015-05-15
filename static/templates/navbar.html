@@ -35,10 +35,10 @@
 						</ul>
 						<nav class="nav-main mega-menu">
 							<ul class="nav nav-pills nav-main" id="mainMenu">
-								<li class="active"><a href='{% url "home"%}'>Home</a></li>
-								<li><a href='{% url "faqs"%}'>FAQ</a></li>
-								<li><a href='{% url "contact"%}'>Contact</a></li>
-								<li><a href='{% url "macs"%}'>Quote</a></li>
+								<li {% if active == 'home' %}class="active"{% endif %}><a href="{% url 'home'%} ">Home</a></li>
+								<li {% if active == 'faqs' %} class="active"{% endif %}><a href="{% url 'faqs' %}">FAQ</a></li>
+								<li {% if active == 'contact' %}class="active"{% endif %}><a href="{% url 'contact' %}">Contact</a></li>
+								<li {% if active == 'macs' %} class="active"{% endif %}><a href="{% url 'macs' %}">Quote</a></li>
 							</ul>
 						</nav>
 					</div>

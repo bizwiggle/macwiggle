@@ -185,7 +185,10 @@
      
     
     {% for mac in all_Model %}
-<div class="row bs-top" id="">
+    <div class="row step2Master">
+    
+    
+<div class="row step2" id="">
 
   <div class="col-xs-5 col-sm-4">
      <img class="img-responsive" src="/static/img/macs/macbook.jpg"/>
@@ -203,7 +206,7 @@
   
  
 
-<div class="hidden-xs bs-top">
+<div class="row step2 hidden-xs">
 
   <div style="margin:10px; class="col-xs-12 col-sm-12"><h4>1. What shape is it in?</h4>
   </div>
@@ -254,7 +257,7 @@
   
   </form>
   </div>
-  
+  </div>
   
  <div class="visible-xs">
  
@@ -367,7 +370,7 @@ $("#formMacPrice").change(function(){
 	        $('html, body').animate({scrollTop:180}, 'slow');
 
 	        if (item.pk == 0){
-		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>MacWiggle doens`t buy this  product.<br></div>');
+		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>Unfortunately, we can`t offer you any money for this item<br></div>');
 	        } else {
 	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div class="bs-left" style="color: black; text-align: justify;" value="'+item.pk+'">'+item.fields['msg']+'</div><div style="background-color: white; text-align: center; border: 1px solid blue; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
 	        }
@@ -401,7 +404,7 @@ $("#formMacPriceMob").change(function(){
 	        $('html, body').animate({scrollTop:180}, 'slow');
 
 	        if (item.pk == 0){
-		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>MacWiggle doens`t buy this  product.<br></div>');
+		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>Unfortunately, we can`t offer you any money for this item<br></div>');
 	        } else {
 	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div class="bs-left" style="color: black; text-align: justify;" value="'+item.pk+'">'+item.fields['msg']+'<br></div><div style="background-color: white; text-align: center; border: 1px solid black; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
 	        }

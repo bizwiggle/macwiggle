@@ -95,14 +95,14 @@
   </div>
   
   <div id="infoMacModel" class="col-xs-8 col-md-10">
-<b>Model:</b>  {{ pay.idModelKey }}<br>
+<b>Model Macbook:</b>  {{ pay.idModelKey }}<br>
  <b>Price:</b> $ {{ pay.price }}
   </div>
   <div class="col-xs-12 col-md-8"><h4>For selling fild out the form?</h4>
   </div>
 </div> 
      
-<form id="paidMac" name="paidMac" class="form-horizontal" action="/sellMac/" method="POST" enctype=multipart/form-data>
+<form id="paidMac" name="paidMac" class="post-form" action="{% url 'sellMac' %}" method="POST">
 {% csrf_token %}
      
 

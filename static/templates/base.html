@@ -94,7 +94,7 @@
 			
 			
 			
-								<form method="GET" id="newslatter" action="/newslatter/">
+								<form method="POST" name="newslatter" id="newslatter" action="/newslatter/">
 								
 									<div class="input-group">
 										<input class="form-control" placeholder="Email Address" name="email" id="email" type="text">
@@ -220,7 +220,35 @@
 		
 		</script>
 		 -->
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#newslatter')
+        .bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The email address is required and can\'t be empty'
+                        },
+                        emailAddress: {
+                            message: 'The input is not a valid email address'
+                        }
+                    }
+                },
+  
+               
+            }
+        })
+        
+});
+</script>			
 		 
 		       
 		{% block js %} {% endblock %}

@@ -17,10 +17,9 @@ img.center-pic {
 	border-top: 3px solid gray;
 	
 }
-
-#macs {
-	font-size:14px;
-	height:200px;
+@media screen and (max-width: 1968px) {
+    #macs {
+	height:250px;
 	cursor: pointer;
 	padding: 20px;
     margin: 0px 0px;
@@ -35,8 +34,31 @@ img.center-pic {
     border-image: none;
     border-radius: 3px;
     text-align: left;
-	
+        
+    }
 }
+ 
+@media screen and (max-width: 568px) {
+    #macs {
+	height:160px;
+	cursor: pointer;
+	padding: 20px;
+    margin: 0px 0px;
+    border-width: 2px 2px 2px 5px;
+    border-style: solid;
+    border-color: #EEE;
+    border-bottom-color:#1B809E;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 3px;
+    text-align: left;
+        
+    }
+}
+
 
 #macs:HOVER {
 	
@@ -55,17 +77,19 @@ img.center-pic {
     text-align: left;
 	
 }
-
-@media screen and (max-width: @screen-xs) {
+@media screen and (max-width: 1968px) {
     #selectQuote {
-  		text-align: center;
-        font-size:2px;
+        font-size:26px;
+        text-align: center;
+        
     }
 }
  
-@media screen and (max-width: @screen-sm) {
+@media screen and (max-width: 568px) {
     #selectQuote {
-        font-size:22px;
+        font-size:1.1em;
+        text-align: center;
+        
     }
 }
 
@@ -134,13 +158,21 @@ textHelp{
 }
 
 .bs-left {
-    padding: 20px;
-    margin: 20px 0px;
-   
+    padding-right: 20px;
+    margin: 22px 0px 10px 0px;
     font-size: 12px;
 }
 
-.bs-top {
+.step2 {
+    padding: 0px;
+    margin: 0px 13px;
+    
+    text-align: justify;
+    font-size: 14px;
+    height: 200px;
+}
+
+.step2Master {
     padding: 0px;
     margin: 0px 0px;
     border-width: 2px 2px 2px 5px;
@@ -154,5 +186,8 @@ textHelp{
     border-radius: 3px;
     text-align: justify;
     font-size: 14px;
-    height: 200px;
+    height: 100%;
 }
+
+
+
