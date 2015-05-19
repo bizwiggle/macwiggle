@@ -19,7 +19,31 @@
                   </div>
 </div>
 </section>
+ {% if messages %}
+            <div class="container">
+            
+ 
+               
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">           
+                 
+    <hr>
+    {% for message in messages %}
+    <p{% if message.tags == "error" %} class="alert alert-success"{% endif %}>{{ message }}</p>
+    
+   
+    
+    {% endfor %}
 
+    
+   
+    
+    
+    </div>
+    </div>              
+
+                  
+{% endif %}
 
  <div id="divshowModel"> 
     
@@ -51,8 +75,8 @@
  
      
      <div id="macs" class="col-xs-4 col-sm-4 col-md-4">
-     <div id="selectQuote" onclick="selectScreen('/getScreen/','id_screen',{{ mac.id }});">
-     <img title="{{ mac.nameMac }}" class="img-responsive"src="/static/img/macs/{{mac.imgMac}}"/><br>
+     <div align="right" id="selectQuote" onclick="selectScreen('/getScreen/','id_screen',{{ mac.id }});">
+     <img title="{{ mac.nameMac }}" class="img-responsive" src="/static/img/macs/{{mac.imgMac}}"/><br>
     {{ mac.nameMac }}</div></div>
      
 
@@ -60,7 +84,7 @@
    
 {% else %}
 
-<p>Nenhuma enquete está disponível.</p>
+<!-- <p>Nenhuma enquete está disponível.</p> -->
 
 {% endif %}
 
@@ -319,7 +343,7 @@ if($(id)==0) {
             $('#id_macs').slideDown(retorno)
             $('#id_macs').slideUp(retorno)
             $('html, body').animate({scrollTop:360}, 'slow');
-            $('#help').slideToggle(170);
+            $('#help').slideDown(170);
             $("#"+objHtmlReturn).html('<option value="0">Select Screen</option>');
             $.each(retorno, function(i, item){
             $("#"+objHtmlReturn).append('<option value="'+item.pk+'">'+item.fields['size']+'</option>');

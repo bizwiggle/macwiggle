@@ -19,7 +19,7 @@ img.center-pic {
 }
 @media screen and (max-width: 1968px) {
     #macs {
-	height:250px;
+	height:100%;
 	cursor: pointer;
 	padding: 20px;
     margin: 0px 0px;
@@ -40,7 +40,7 @@ img.center-pic {
  
 @media screen and (max-width: 568px) {
     #macs {
-	height:160px;
+	height:100%;
 	cursor: pointer;
 	padding: 20px;
     margin: 0px 0px;
@@ -54,7 +54,7 @@ img.center-pic {
     -moz-border-left-colors: none;
     border-image: none;
     border-radius: 3px;
-    text-align: left;
+    text-align: center;
         
     }
 }
@@ -74,7 +74,7 @@ img.center-pic {
     -moz-border-left-colors: none;
     border-image: none;
     border-radius: 3px;
-    text-align: left;
+    text-align: center;
 	
 }
 @media screen and (max-width: 1968px) {
@@ -112,7 +112,7 @@ img.center-pic {
 	
 }
 #help{
-	height: 375px;
+	height: 330px;
 	overflow: scroll;
 	padding: 20px;
     margin: 0px 0px;
@@ -146,15 +146,37 @@ textHelp{
 	color: blue;
 	padding: 20px;
 }
-
-#infoMacModel{
-	text-align: left;
-	font-size:x-large;
-	margin-top: 30px;
-	
+@media screen and (max-width: 1968px) {
+    #infoMacModel {
+        font-size: 30px;
+        text-align: left;
+        margin-top: 20px;        
+    }
 }
-.printMacModel{
-	font-size: 30px;
+ 
+@media screen and (max-width: 768px) {
+    #infoMacModel {
+        font-size:20px;
+        text-align: left;
+        margin-top: 30px;
+        
+    }
+}
+
+@media screen and (max-width: 1968px) {
+    .printMacModel {
+        font-size: 30px;
+        text-align: left;
+        margin-top: 30px;
+    }
+}
+ 
+@media screen and (max-width: 568px) {
+    .printMacModel {
+        font-size:14px;
+        text-align: left;
+        
+    }
 }
 
 .bs-left {
@@ -166,7 +188,6 @@ textHelp{
 .step2 {
     padding: 0px;
     margin: 0px 13px;
-    
     text-align: justify;
     font-size: 14px;
     height: 200px;
@@ -189,5 +210,9 @@ textHelp{
     height: 100%;
 }
 
-
-
+.step2Div{
+	background-color:#EEE;
+	color: #0c70b4;
+	margin:20px; 
+	padding: 20px;
+}

@@ -157,9 +157,6 @@
     <hr>
     {% for message in messages %}
     <div{% if message.tags == "error" %} class="alert alert-success"{% endif %}>{{ message }}</div>
-    
-   
-    
     {% endfor %}
 
     
@@ -370,9 +367,26 @@ $("#formMacPrice").change(function(){
 	        $('html, body').animate({scrollTop:180}, 'slow');
 
 	        if (item.pk == 0){
-		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>Unfortunately, we can`t offer you any money for this item<br></div>');
+		        $("#id_price").append('<div class="row step2Div" style="text-align: justify; color:red;"><br>Unfortunately, we can`t offer you any money for this item</div>');
 	        } else {
-	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div class="bs-left" style="color: black; text-align: justify;" value="'+item.pk+'">'+item.fields['msg']+'</div><div style="background-color: white; text-align: center; border: 1px solid blue; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
+	        
+	        tt= (params[20]);
+			if (tt == 1){
+			$("#id_price").append('<div align="left" class="row step2Div"><br><ul class="poor"><p>Your laptop is in this condition if <strong>any</strong> of the following are true:</p><li>Laptop does not power on properly</li><li>Has multiple functional defects (i.e., the hard drive, keyboard and trackpad are all defective; multiple ports are non-functional, etc.)</li><li>Display is heavily damaged or non-functional</li><li>Power port is broken or non-functional</li><li>Has major physical defects in multiple locations.</li><li>System fan does not function</li></ul><br></div>');
+			}
+			if (tt == 2){
+			$("#id_price").append('<div class="row step2Div"><br><ul class="poor"><p>Your laptop is in this condition if any of the following are true: </p><li>Has a non-functional or missing component but still functions otherwise, such as keyboard, port, trackpad, hard drive, or optical drive (if there are multiple non-functional components, please choose Broken.)</li><li>Moderate to heavy scratches, dents or scuffs.</li><li>Moderate to heavy wear on the keyboard and/or trackpad </li><li>Minor display issues, such as dead pixels or screen burn.</li><li>Minor damage to the display hinge</li></ul><br></div>');
+			}
+			if (tt == 3){
+			$("#id_price").append('<div class="step2Div"><br><ul class="poor"><li>Your laptop is 100% functional (if your item has a functionality issue, please see the Fair condition option)</li><li>Has normal wear on the keyboard and/or trackpad</li><li>Has light scratches and/or very minor dents or nicks</li><li>May have very light scratches or scuffs on the display surface, which do not affect viewing</li></ul><br></div>');
+			}
+			if (tt == 4){
+			$("#id_price").append('<div class="step2Div"><br><ul class="poor"><p>Your laptop is in this condition if <strong>all</strong> of the following are true:</p><li>Works perfectly</li><li>No noticeable flaws, or looks like new</li><li>No scratches or wear</li><li>No scratches or scuffs on the display surface</li></ul><br></div>');
+			} 
+			if(tt == 0) {
+			$("#id_price").append('<div class="step2Div"><br>Error<br></div>');
+			}
+	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div align="center" class="" style="background-color: white; text-align: center; border: 1px solid blue; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
 	        }
 	        });
 	    },
@@ -402,11 +416,27 @@ $("#formMacPriceMob").change(function(){
 	        $('#id_price1').slideDown(retorno)
 	        $('#id_price1').slideUp(retorno)
 	        $('html, body').animate({scrollTop:180}, 'slow');
-
-	        if (item.pk == 0){
-		        $("#id_price").append('<div style="color: black; background-color:activeborder; text-align: justify;"><br>Unfortunately, we can`t offer you any money for this item<br></div>');
+	        
+			if (item.pk == 0){
+		        $("#id_price").append('<div class="row step2Div" style="text-align: justify; color:red;"><br>Unfortunately, we can`t offer you any money for this item</div>');
 	        } else {
-	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div class="bs-left" style="color: black; text-align: justify;" value="'+item.pk+'">'+item.fields['msg']+'<br></div><div style="background-color: white; text-align: center; border: 1px solid black; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
+	        tt= (params[20]);
+			if (tt == 1){
+			$("#id_price").append('<div align="left" class="row step2Div"><br><ul class="poor"><p>Your laptop is in this condition if <strong>any</strong> of the following are true:</p><li>Laptop does not power on properly</li><li>Has multiple functional defects (i.e., the hard drive, keyboard and trackpad are all defective; multiple ports are non-functional, etc.)</li><li>Display is heavily damaged or non-functional</li><li>Power port is broken or non-functional</li><li>Has major physical defects in multiple locations.</li><li>System fan does not function</li></ul><br></div>');
+			}
+			if (tt == 2){
+			$("#id_price").append('<div class="row step2Div"><br><ul class="poor"><p>Your laptop is in this condition if any of the following are true: </p><li>Has a non-functional or missing component but still functions otherwise, such as keyboard, port, trackpad, hard drive, or optical drive (if there are multiple non-functional components, please choose Broken.)</li><li>Moderate to heavy scratches, dents or scuffs.</li><li>Moderate to heavy wear on the keyboard and/or trackpad </li><li>Minor display issues, such as dead pixels or screen burn.</li><li>Minor damage to the display hinge</li></ul><br></div>');
+			}
+			if (tt == 3){
+			$("#id_price").append('<div class="step2Div"><br><ul class="poor"><li>Your laptop is 100% functional (if your item has a functionality issue, please see the Fair condition option)</li><li>Has normal wear on the keyboard and/or trackpad</li><li>Has light scratches and/or very minor dents or nicks</li><li>May have very light scratches or scuffs on the display surface, which do not affect viewing</li></ul><br></div>');
+			}
+			if (tt == 4){
+			$("#id_price").append('<div class="step2Div"><br><ul class="poor"><p>Your laptop is in this condition if <strong>all</strong> of the following are true:</p><li>Works perfectly</li><li>No noticeable flaws, or looks like new</li><li>No scratches or wear</li><li>No scratches or scuffs on the display surface</li></ul><br></div>');
+			} 
+			if(tt==0) {
+			$("#id_price").append('<div class="step2Div"><br>Error<br></div>');
+			}
+	        	$("#id_price").append('<input name="state" type="hidden" value="'+item.fields['status']+'"><div align="center" class="" style="background-color: white; text-align: center; border: 1px solid blue; margin:20px; padding: 10px;" value="'+item.pk+'"><h2><b>Price: </b>$'+item.fields['price']+'</h2><h3>Your Macwiggle Offer<br></h3><button id="id_button_next" class="btn btn-primary btn-lg">Get Paid</button></div>');
 	        }
 	        });
 	    },

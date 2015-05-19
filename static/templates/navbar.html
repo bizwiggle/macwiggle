@@ -9,8 +9,8 @@
 					<nav>
 						<ul class="nav nav-pills nav-top">
 							<li class="phone">
-								<span><i class="fa fa-phone"></i>{{ PHONE }}</span>
-								<span><i class="fa fa-phone"></i>{{ PHONE1 }}</span>
+								<span><i class="fa fa-phone"></i><a target="_blank" href="tel:{{ PHONE }}" target="_blank" title="Call now">{{ PHONE }}</a></span>
+								<span><i class="fa fa-phone"></i><a target="_blank" href="tel:{{ PHONE1 }}" target="_blank" title="Call now">Toll-Free: {{ PHONE1 }}</a></span>
 							</li>
 						</ul>
 					</nav>
@@ -22,7 +22,7 @@
 					<div class="container">
 						<ul class="social-icons">
 						{% if FACEBOOK %}
-							<li class="facebook"><a href="{{ FACEBOOK }}" target="_blank" title="Facebook">Facebook</a></li>
+							<li class="facebook"><a target="_blank" href="{{ FACEBOOK }}" target="_blank" title="Facebook">Facebook</a></li>
 							{% endif %}
 							
 							{% if TWITTER %}

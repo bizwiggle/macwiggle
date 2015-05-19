@@ -84,7 +84,6 @@ class macStatus (models.Model):
     idModelKey = models.ForeignKey('macsModel')
     status = models.CharField(max_length=50, null=False, blank=True)
     price = models.CharField(max_length=30, null=False, blank=True)
-    msg = models.CharField(max_length=900, null=False, blank=True)
 
 
     

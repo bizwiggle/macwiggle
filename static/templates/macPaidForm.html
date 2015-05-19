@@ -28,7 +28,7 @@
      </section>
      
           {% if messages %}
-            <div class="containeriii">
+            <div class="container">
             
  
                
@@ -37,7 +37,7 @@
                  
     <hr>
     {% for message in messages %}
-    <p{% if message.tags == "error" %} class="alert alert-warning"{% endif %}>{{ message }}</p>
+    <p{% if message.tags == "error" %} class="alert alert-success"{% endif %}>{{ message }}</p>
     
    
     
@@ -49,7 +49,6 @@
     
     </div>
     </div>              
-     </h2>   
 
                   
 {% endif %}
@@ -98,8 +97,7 @@
 <b>Model Macbook:</b>  {{ pay.idModelKey }}<br>
  <b>Price:</b> $ {{ pay.price }}
   </div>
-  <div class="col-xs-12 col-md-8"><h4>For selling fild out the form?</h4>
-  </div>
+  
 </div> 
      
 <form id="paidMac" name="paidMac" class="post-form" action="{% url 'sellMac' %}" method="POST">
@@ -230,20 +228,9 @@
 
 
 </div>
-
- 
-
-
-
-
-       
-     
-     
-
-            </div>
-                                                                      
-			</div>
-      <!-- END .main -->
+</div>
+</div>
+<!-- END .main -->
       
 <script type="text/javascript">
 $(document).ready(function() {

@@ -39,10 +39,13 @@ context = Context({
 #this populate the Home
 def home (request):
     all_review = Review.objects.all().order_by('-data_pub')[:5]
-    t = loader.get_template('home.html')
-    context['all_review'] = all_review
-
-    return HttpResponse(t.render(context))
+    if all_review.count() > 0:
+        t = loader.get_template('home.html')
+        context['all_review'] = all_review
+        return HttpResponse(t.render(context))
+    else:
+        messages.error(request, 'not found Reviews.')
+        return render(request, 'home.html', context) 
     
 #this return the mac Model and price
 def getPriceMac (request):
@@ -89,11 +92,9 @@ def sellMac(request):
             from_email = settings.EMAIL_HOST_USER
             to_list = [email, settings.EMAIL_HOST_USER]
             send_mail(subjects, msg, from_email, to_list, fail_silently=True)
+            
             messages.success(request, 'Thanks for Sell to us. Wait for your contact E-mail.') 
-            #return HttpResponse("Dados inseridos com sucesso!")
-            return render_to_response("msgSold.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+            return render(request, 'msgSold.html', context)                     
         else:
             # The supplied form contained errors - just print them to the terminal.
             print form.errors
@@ -117,10 +118,8 @@ def getPaid (request):
         context['STATES'] = STATES
         return HttpResponse(t.render(context)) 
     else:
-        messages.success(request, 'not found Model for this.')
-        return render_to_response("macPaidForm.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+        messages.error(request, 'not found Model for this product.')
+        return render(request, 'macPaidForm.html', context) 
 
 #This show the page macbook model and configuration
 def searchModel (request):
@@ -137,9 +136,7 @@ def searchModel (request):
         return HttpResponse(t.render(context))
     else:
         messages.error(request, 'Model not found, Macwigle doens`t buy this model, Thanks for choose us.')
-        return render_to_response("macModelForm.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+        return render(request, 'macModelForm.html', context) 
         
 
 #this populate the Sreens control
@@ -147,7 +144,7 @@ def getScreen (request):
     
     if  request.method == 'GET':
         id = request.GET.get('id');
-        all_Screen = Screen.objects.filter(idMacKey=id).order_by('id')
+        all_Screen = Screen.objects.filter(idMacKey=id).order_by('size')
     if all_Screen.count() > 0:
         json = serializers.serialize("json",  all_Screen)
     else:
@@ -160,7 +157,7 @@ def getProcessor (request):
     
     if  request.method == 'GET':
         id = request.GET.get('id');
-        all_Processor = Processor.objects.filter(idScreenKey_id=id).order_by('id')
+        all_Processor = Processor.objects.filter(idScreenKey_id=id).order_by('processor')
     if  all_Processor.count() > 0:
         json = serializers.serialize("json",  all_Processor)
     else:
@@ -175,7 +172,7 @@ def getHd (request):
     if request.method == 'GET':
         id_p = request.GET.get('id_p');
         id_s = request.GET.get('id_s');
-        all_Hd = hardDrive.objects.filter(idProcessorKey_id=id_p, idScreenKey_id=id_s).order_by('id')  
+        all_Hd = hardDrive.objects.filter(idProcessorKey_id=id_p, idScreenKey_id=id_s).order_by('drive')  
     if  all_Hd.count() > 0:
         json = serializers.serialize("json",  all_Hd)
     else:
@@ -199,9 +196,13 @@ def getModel (request):
 # This show page Macs.html search data table_Macs
 def macs (request):    
     all_Macs = Macs.objects.all().order_by('id')[:3]
-    t = loader.get_template('macs.html')
-    context['all_Macs'] = all_Macs   
-    return HttpResponse(t.render(context))
+    if all_Macs.count() > 0:
+        t = loader.get_template('macs.html')
+        context['all_Macs'] = all_Macs   
+        return HttpResponse(t.render(context))
+    else:
+        messages.error(request, 'not found Macbooks.')
+        return render(request, 'macs.html', context) 
 
 #This save form contact and send email for Macwiggle adm
 @csrf_exempt  
@@ -230,15 +231,13 @@ def contactForm(request):
        
         messages.success(request, 'Thanks for you Contact us.') 
         #return HttpResponse("Dados inseridos com sucesso!")
-        return render_to_response("msgContact.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+        return render(request, 'msgContact.html', context) 
+
     else:
     # Chama Template
         messages.error(request, 'Model not found.')
-        return render_to_response("msgSold.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+        return render(request, 'msgContact.html', context) 
+
             
 @csrf_exempt        
 def newslatter(request):
@@ -261,15 +260,13 @@ def newslatter(request):
        
         messages.success(request, 'Thanks for assign our Newslatter.') 
         #return HttpResponse("Dados inseridos com sucesso!")
-        return render_to_response("msgNewslatter.html", 
-                              locals(), 
-                context_instance=RequestContext(request))
+        return render(request, 'msgNewslatter.html', context) 
+
     else:
     # Chama Template
         messages.error(request, 'not found.')
-        return render_to_response("msgNewslatter.html", 
-                              locals(), 
-                context_instance=RequestContext(request))        
+        return render(request, 'msgNewslatter.html', context) 
+       
         
 #This open faqs.html       
 def faqs (request):    
@@ -282,7 +279,5 @@ def faqs (request):
   
 #This open contact.html    
 def contact (request):    
-    t = loader.get_template('contact.html')
-    context['PHONE'] = PHONE
-       
-    return HttpResponse(t.render(context))
+    return render(request, 'contact.html', context) 
+

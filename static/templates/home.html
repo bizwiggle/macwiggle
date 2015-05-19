@@ -20,7 +20,33 @@
                   </div>
                </div>
             </section>
-        
+          {% if messages %}
+            <div class="container">
+            
+ 
+               
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">           
+                 
+    <hr>
+    {% for message in messages %}
+    <p{% if message.tags == "error" %} class="alert alert-success"{% endif %}>{{ message }}</p>
+    
+   
+    
+    {% endfor %}
+
+    
+   
+    
+    
+    </div>
+    </div>              
+
+                  
+{% endif %}
+               </div> 
+               
         	<div class="slider-container">
           <div class="slider" id="revolutionSlider" data-plugin-revolution-slider data-plugin-options='{"startheight": 500}'>
             <ul>
